@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-上传文件</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/read-short-score.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+	<style>
+		.upload-flie-box{
+			margin:2rem 1rem;
+			border:1px solid #e6eaee;
+			width:93%;
+			height:100%;
+			margin:2rem auto;
+			text-align: center;
+			box-sizing: border-box;
+			position: relative;
+		}
+		.upload-flie-box .iconfont{
+			color:#b2bbc8;
+			font-size:2rem;
+		}
+		.upload-flie-box p{
+			font-size:0.7rem;
+			line-height:2rem;
+			color:#b2bbc8;
+		}
+		.upload-flie-box .upload-btn{
+			position: relative;
+			width:8rem;
+			height:2rem;
+			line-height:2rem;
+			background-color:#279cf4;
+			color:#fff;
+			font-size:0.7rem;
+			text-align: center;
+			border-radius:1rem;
+			margin: 1rem auto;
+		}
+		.upload-flie-box .upload-btn>input{
+			position: absolute;
+			left:0;
+			width:8rem;
+			height:2rem;
+			opacity: 0;
+			z-index: 10;
+		}
+		.center-box{
+			width:24rem;
+			height:12rem;
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-left:-12rem;
+			margin-top:-6rem;
+		}
+	</style>
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content" style="height: 100%;">
+	<div class="scores-ranking">分享偶像</div>
+	<div  style="border-top:1px solid #e6eaee;height:50%;">
+		<div class="upload-flie-box">
+			<div class="center-box">
+				<img src="" id="imgs" alt="" style="width: 8rem; height: 8rem;display: none;"/>
+				<div id="other" style="height:8rem;line-height: 4rem;">
+					<i class="iconfont icon-wenjian"></i>
+					<p>你还未选择文件,点击上传文件分享作品</p>
+				</div>
+				<div class="upload-btn">上传文件
+					<input type="file" class="upload_pic" id="upload" />
+				</div>
+				<div class="upload-btn" style="display: none;">进入投票环节
+					<input type="button" class="upload_pic" id="vote" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+<script>
+	var sss=localStorage.getItem('uploadFlag');
+	if(sss=='true'){
+		window.location.href="share-idol.html";
+	}else{
+		//获取上传按钮
+		var input1 = document.getElementById("upload");
+
+		if(typeof FileReader==='undefined'){
+			//result.innerHTML = "抱歉，你的浏览器不支持 FileReader";
+			input1.setAttribute('disabled','disabled');
+		}else{
+			input1.addEventListener('change',readFile,false);
+		}
+
+		var uploadFlag=false;
+		function readFile(){
+			var file = this.files[0];
+
+			if(!/image\/\w+/.test(file.type)){
+				alert("文件必须为图片！");
+				return false;
+			}
+			var reader = new FileReader();
+			reader.readAsDataURL(file); //将图片转换成base64编码格式
+			console.log(file);  //获取到的文件
+			//当文件读取成功便可以调取上传的接口，想传哪里传哪里
+			reader.onload = function(e){
+				var fileData = $('#upload')[0].files[0];
+				console.log(fileData)
+				var formData = new FormData();
+				formData.append("file", fileData.name);
+				formData.append("token", token);
+				$.ajax({
+					url: server + "comm/upload?fileType="+1+'&token='+token,
+					type: 'POST',
+					cache: false,
+					data: formData,
+					processData: false,
+					"content-type": "application/json;charset=UTF-8",
+					success: function (result) {
+						uploadFlag=true;
+						localStorage.setItem('uploadFlag',uploadFlag);
+						$('#other').hide();
+						$('#imgs').attr('src',result.obj);
+						$('#imgs').show();
+						$('#upload').attr('disabled',true);
+						$('#upload').parent().hide();
+						$('#upload').parent().next().show();
+						/**/
+					},error: function (err) {
+						alert("上传图片失败，请重新上传");
+				}
+				});
+			}
+		}
+	}
+	$('#vote').click(function(){
+		window.location.href="share-idol.html";
+	})
+</script>
+</body>
+</html>

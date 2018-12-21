@@ -1,0 +1,126 @@
+@charset "utf-8";
+#backImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background:url(../images/symbols-background-pattern-9.png) no-repeat;
+    background-size: cover;
+}
+#register-box,.login_box{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+}
+#register-box .box,.login_box .login{
+    position: absolute;
+    width: 70%;
+    height: 50%;
+    top: 25%;
+    left: 50%;
+    margin-left: -35%;
+    text-align: center;
+}
+#register-box .box h1{
+    line-height:2rem;
+    font-size:1rem;
+    margin-bottom:2rem;
+}
+#register-box .box .user-input{
+    position: relative;
+    width:100%;
+    height:13.5rem;
+    border:1px solid #e7ebee;
+    border-radius: 5px;
+    z-index:0;
+}
+.uploadPhoto{
+    position: absolute;
+    z-index:3;
+    top:-1rem;
+    left:50%;
+    margin-left:-1.2rem;
+    width:2.5rem;
+    height:2.5rem;
+    border:3px solid #e7ebee;
+    border-radius:50%;
+
+}
+.uploadPhoto>img{
+    display: inline-block;
+   width:2.5rem;
+    height:2.5rem;
+    border-radius: 50%;
+}
+.box input[type="text"],.box input[type="password"]{
+    border:none;
+    display: block;
+    border-bottom:2px solid #DCDEE0;
+    box-sizing: border-box;
+    width:90%;
+    padding:0 0.2rem;
+    height:2.5rem;
+    font-size:0.6rem;
+    margin:0 auto 0.5rem;
+}
+.box input:focus{border-bottom:2px solid #0C77F8;}
+/* .box input[type="text"]{margin-top:1rem;} */
+.register-btn{
+    margin-top:0.6rem;
+    width:100%;
+    height:2rem;
+    line-height: 2rem;
+    background-color:#279cf4;
+    color:#fff;
+    outline: none;
+    border:none;
+    border-radius: 5px;
+}
+#uploadPhoto{
+    position: absolute;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding:0;
+    margin:0;
+    opacity: 0;
+}
+.role{
+	text-align:left;
+	padding-left: 1rem;
+	margin-top:2rem;
+}
+.role label{
+	position: relative;
+	display: inline-block;
+	margin-right:0.5rem;
+}
+.role label input[type="radio"]{
+	display: inline-block;
+	opacity: 0;
+	position: relative;
+	width: 1.2rem;
+	height: 1.2rem;
+	z-index: 10;
+	margin: 0;
+}
+.role label .option{
+	width: 1.2rem;
+	height: 1.2rem;
+	position: absolute;
+	top: 0;
+	left:0;
+	background: url(../images/uncheck.png) no-repeat;
+	background-size: cover;
+}
+.role label span{
+	position: relative;
+	top: -8px;
+}
+.role label input[type="radio"]:checked+div {  /*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+    background: url(../images/check.png) no-repeat;
+    background-size: cover;
+}

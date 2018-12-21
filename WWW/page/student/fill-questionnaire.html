@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-填写问卷</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/fill-questionnaire.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking">填写问卷</div>
+	<div class="questionnaire-box">
+		<div class="questionnaire-title">Self-evaluation on Career Success</div>
+		<p id="p"></p>
+		<ul class="questionnaire-item" id='questionnaire-item'>
+			<!--<li>
+				<span class="fleft qid">01</span>
+				<dl class="fleft">
+					<dt>Be nice to everyone</dt>
+					<dd>You like everyone around you and are friendly to them</dd>
+				</dl>
+				<div class="fright opotionlist">
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name1" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Always</p>
+					</span>
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name1" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Sometimes</p>
+					</span>
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name1" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Never</p>
+					</span>
+				</div>
+			</li>
+			<li>
+				<span class="fleft qid">02</span>
+				<dl class="fleft">
+					<dt>ready to help others for a just cause</dt>
+					<dd>ready to help others for a just cause actionm</dd>
+				</dl>
+				<div class="fright opotionlist">
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name2" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Always</p>
+					</span>
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name2" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Sometimes</p>
+					</span>
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name2" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Never</p>
+					</span>
+				</div>
+			</li>
+			<li>
+				<span class="fleft qid">03</span>
+				<dl class="fleft">
+					<dt>Be nice to everyone</dt>
+					<dd>You like everyone around you and are friendly to them</dd>
+				</dl>
+				<div class="fright opotionlist">
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name3" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Always</p>
+					</span>
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name3" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Sometimes</p>
+					</span>
+					<span class="inlineBlock">
+						<div class="radio">
+							<label for="">
+								<input  name="name3" type="radio">
+								<div class="option"></div>
+							</label>
+						</div>
+						<p>Never</p>
+					</span>
+				</div>
+			</li>-->
+		</ul>
+	</div>
+
+	<button type="button" class="submit-questionnaire" id="check" style="margin-left:40%;" onclick="checkScore();">查看成绩</button>
+	<button type="button" class="submit-questionnaire" id="sumbit" style="margin-left:40%;display:none;" onclick="sumbitQ();">提交问卷</button>
+	</div>
+	<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+
+	<div id="page-model3" class="page-model">
+		<div class="page-model-box">
+			<span class="closed fright" onclick="closed();"><i class="iconfont icon-chahao"></i></span>
+			<img src="../../images/diolay3_03.png" alt="">
+			<h2>提交问卷</h2>
+			<p>已做完所有题目</p>
+			<button class="confirm" onclick="submitQuestionnaire();">确定</button>
+		</div>
+	</div>
+<script src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/landscape.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/student.js" ></script>
+	<script>
+		var n= 0;
+		var timer=null;
+		$(function(){
+			clearInterval(timer);
+			// setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+			timer=setInterval(function ()
+			{
+				n++;
+			},1000);
+		});
+
+		var users=JSON.parse(localStorage.getItem('user'));
+		var user=users.userLoginname;
+
+		var everyObject={};
+		$(function(){
+			showQuestionnaire();
+		})
+		function checkScore(){
+			window.location.href="analyze-questionnaire-score.html";
+		}
+		function sumbitQ(){
+			clearInterval(timer);
+			$('#page-model3').fadeIn(500);
+		}
+		function submitQuestionnaire(){
+			var array=[];
+			$('#page-model3').fadeOut(500);
+			var lis=$('.questionnaire-item li');
+			for(var i=0;i<lis.length;i++){
+				if($(lis[i]).find('.opotionlist').length>0){
+					var choice=$(lis[i]).find('.opotionlist').find('input[type="radio"]:checked').parents('.radio').next('p').text();
+					var choiceScore=$(lis[i]).find('.opotionlist').find('input[type="radio"]:checked').val();
+					var classBatch=batch;
+					var courseItemId=$(lis[i]).find('.opotionlist').find('input[type="radio"]:checked').attr('name');
+					var isMaxscore=-1;//默认不是最大成绩
+					if(choiceScore=="5"){
+						isMaxscore=0;
+					}
+					var userLoginname=user;
+					var choiceUsetime=n;//所用时间
+					everyObject={};
+					everyObject.choice=choice;
+					everyObject.choiceScore=choiceScore;
+					everyObject.classBatch=classBatch;
+					everyObject.courseItemId=courseItemId;
+					everyObject.isMaxscore=isMaxscore;
+					everyObject.userLoginname=userLoginname;
+					everyObject.choiceUsetime=choiceUsetime;
+
+					/*var everyList=JSON.stringify(everyObject);*/
+					array.push(everyObject);
+					console.log(array)
+				}
+			}
+			$.ajax({
+				url:server + 'stu/questionnaire/submit?token='+token,
+				type:"post",
+				dataType: "json",
+				data:JSON.stringify(array),
+				contentType: 'application/json',
+				success:function(back){
+					window.location.href="analyze-questionnaire-score.html";
+					localStorage.setItem('array',JSON.stringify(array));
+				}
+			})
+
+		}
+		function closed(){
+			$('#page-model3').fadeOut(500);
+		}
+
+
+		function showQuestionnaire(){
+			$.ajax({
+						type: 'GET',
+						url: server + 'stu/questionnaire/get?token='+token+'&batch='+batch,
+						dataType: "json",
+						success: function(back) {
+							if (back.obj) {
+								if (back.obj.length > 0) {
+									for (var i = 1; i < back.obj.length + 1; i++) {
+										if (back.obj[i - 1].if_handle !== 0) {
+											$('#sumbit').show();
+											$('#check').hide();
+										}
+										var contentStr = '<li>' +
+												'<span class="fleft qid">' + i + '</span>' +
+												'<dl class="fleft">' +
+												'<dt>' + back.obj[i - 1].title + '</dt>' +
+												'<dd>' + back.obj[i - 1].course_item + '</dd>' +
+												'</dl>';
+										if (back.obj[i - 1].if_handle != 0) {
+											contentStr +=
+													'<div class="fright opotionlist">' +
+													'<span class="inlineBlock">' +
+													'<div class="radio">' +
+													'<label for="">' +
+													'<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="5"> ' +
+													'<div class="option"></div>' +
+													'</label>' +
+													'</div>' +
+													'<p>Always</p>' +
+													'</span>' +
+													'<span class="inlineBlock">' +
+													'<div class="radio">' +
+													'<label for="">' +
+													'<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="3"> ' +
+													'<div class="option"></div>' +
+													'</label>' +
+													'</div>' +
+													'<p>Sometimes</p>' +
+													'</span>' +
+													'<span class="inlineBlock">' +
+													'<div class="radio">' +
+													'<label for="">' +
+													'<input name="' + back.obj[i - 1].course_item_id + '" type="radio" value="1"> ' +
+													'<div class="option"></div>' +
+													'</label>' +
+													'</div>' +
+													'<p>Never</p>' +
+													'</span>' +
+													'</div>';
+										}
+											contentStr += '</li>';
+											var $content = $(contentStr);
+											$("#questionnaire-item").append($content);
+
+									}
+								}
+							}
+						},
+				error: function(err){
+					alert('接口出错！')
+				}
+			});
+		}
+	</script>
+</body>
+</html>

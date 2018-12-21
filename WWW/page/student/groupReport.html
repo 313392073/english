@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-小组汇报</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/groupReport.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking">小组汇报</div>
+	<div class="group-box">
+		<div class="group-section">
+			<span>每人可投3票</span>
+			<div class="group-vote">您选择投票给：</div>
+		</div>
+		<div class="group-list-box">
+			<ul class="group-list" id='group-list'>
+				<!--
+				<li class="group-item">
+					<span class="group-item-icon bg-G">G组</span>
+					<div class="group-item-img">
+						<img src="../../images/01.png" alt="" />
+						<img src="../../images/02.png" alt="" />
+						<img src="../../images/03.png" alt="" />
+						<img src="../../images/01.png" alt="" />
+					</div>
+					<div style="font-size:0.9rem;line-height: 2.5rem;">总分：98分</div>
+					<div calss="group-item-step">
+						<div class="group-item-step-content">
+							<h2>老师评语</h2>
+							<p class="group-item-step-text">小组成员合作默契，彼此之间能够实现口语沟通交流。多使用一些句型，不要害怕说错，大胆说出口。</p>
+						</div>
+						<div class="group-item-step-content">
+							<h2>小组总结</h2>
+							<p class="group-item-step-text">经过此次训练，我们知道了口语中自己存在的问题，通过课后练习完善自己的发音问题。</p>
+						</div>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+	</div>
+	<div class="btn-box">
+		<button type="button" class="submit-questionnaire" onclick="subQue();">提交投票</button>
+	</div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<div id="page-model7" class="page-model">
+	<div class="page-model-box">
+		<span class="closed fright" onclick="closed();"><i class="iconfont icon-chahao"></i></span>
+		<img src="../../images/dialog4_03.png" alt="">
+		<h2>提交投票</h2>
+		<p>投票给你认可的作品</p>
+		<button class="confirm" onclick="linkLike()">确定</button>
+	</div>
+</div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+	<script>
+		showOrderList();
+		function subQue(){
+			$('#page-model7').fadeIn(500);
+		}
+		function closed(){
+			$('#page-model7').fadeOut(500);
+		}
+		function linkLike(){
+			var list=[];
+			var inputs=$('#group-list li').find('input[type="checkbox"]');
+			for(var i=0;i<inputs.length;i++){
+				if($(inputs[i]).is(':checked')){
+					list.push(inputs[i].value);
+				}
+			}
+			if(list.length<1){
+				alert('请先投票！')
+			}else{
+				$.ajax({
+					type: 'POST',
+					url: server + '/stu/group/submit?token='+token,
+					data : JSON.stringify(list),
+					dataType : 'json',
+					contentType : 'application/json;charset=utf-8',
+					success:function(back){
+						window.location.href="groupReportLike.html";
+					}
+				})
+			}
+			/*window.location.href="groupReportLike.html";*/
+		}
+		
+
+	
+	function showOrderList(){
+		$.ajax({
+			type: 'GET',
+			url: server + 'stu/group/list?token='+token,
+			dataType: "json",
+			success: function(back){
+				if(back.obj){
+					var result=back.obj.grouplist;
+					var already=back.obj.mygrouplist;
+					if(result.length>0){
+						for(var i=0;i<result.length;i++){
+							var likesImage = '';
+							if(result[i].groupuser){
+								var likesImageArr = result[i].groupuser.split(",");
+								for(var j=0; j<likesImageArr.length; j++){
+									likesImage += '<img src="'+likesImageArr[j]+'" alt="" />';
+								}
+							}
+							var $content = $('<li class="group-item" onclick="check(this);">'+
+								'<span class="group-item-icon bg-'+i+'">'+result[i].groupname+'</span>'+
+								'<div class="group-item-img">'+
+									likesImage+
+								'</div>'+
+								/*'<div class="group-item-like">'+
+									'<h2>第'+(i+1)+'名</h2>'+
+									'<span class="group-like-num">'+back.obj[i].likes_user_num+'个赞</span>'+
+								'</div>'+*/
+								'<div calss="group-item-step">'+
+									'<div class="group-item-step-content">'+
+										'<h2>老师评语</h2>'+
+										'<p class="group-item-step-text">'+result[i].tea_comment+'</p>'+
+									'</div>'+
+									'<div class="group-item-step-content">'+
+										'<h2>小组总结</h2>'+
+										'<p class="group-item-step-text">'+result[i].group_comment+'</p>'+
+									'</div>'+
+								'</div>'+
+								'<input type="checkbox" value="'+result[i].sys_group_id+'"/>'+
+							'</li>');
+							$("#group-list").append($content);
+							var g_width = $('.group-item').width()+48,
+									g_len = $('.group-item').length,
+									$g_list = $('.group-list');
+							$g_list.width(g_width * g_len);
+
+						}
+					}
+					if(already.length>0){
+						var target=$("#group-list li").find('input[type="checkbox"]');
+						for(var i=0;i<target.length;i++){
+							for(var j=0;j<already.length;j++){
+								if(already[j].likesGroupId==target[i].value){
+									$(target[i]).attr('checked',true);
+									$(target[i]).parent('li').addClass('active');
+									var color=$(target[i]).siblings('.group-item-icon').css('borderColor');
+									$('.group-vote').append('<span class="vote-icon"><i style="background: '+ color +';"></i></span>');
+									/*var srcs=$(target[i]).parent('li').find('.share-user').attr('src');
+									$('#imgList').append('<img src="'+srcs+'">');*/
+									$(target[i]).parent('li').removeAttr('onclick');
+									$(target[i]).parent('li').siblings().removeAttr('onclick');
+									$('.submit-questionnaire').removeAttr('onclick');
+									$('.submit-questionnaire').text('查看投票排行榜');
+									$('.submit-questionnaire').click(function(){
+										window.location.href="groupReportLike.html";
+									});
+								}
+							}
+						}
+					}
+				}
+			},
+			error: function(err){
+				alert('接口出错！')
+			}
+		});
+	}
+
+		var ss=0;
+		/*$('.to-choose-list>ul').on('click','li',function(){*/
+		function check(obj){
+			var colors=$('.group-vote').find('i');
+			if($(obj).hasClass('active')){//已选中,则取消选中
+				$(obj).removeClass('active');
+				$(obj).find('input[type="checkbox"]').attr('checked',false);
+				var current=$(obj).find('.group-item-icon').css('borderColor');
+				for(var i=0;i<colors.length;i++){
+					if(colors[i].style.background==current){
+						$('.group-vote').find(colors[i]).parent().remove();
+						ss--;
+					}
+				}
+			}else{//没有选中
+				if(ss<3){ //投的数量不够
+					$(obj).addClass('active');
+					$(obj).find('input[type="checkbox"]').attr('checked',true);
+					var color=$(obj).find('.group-item-icon').css('borderColor');
+					$('.group-vote').append('<span class="vote-icon"><i style="background: '+ color +';"></i></span>');
+					ss++;
+				}else{//投的数量够了
+					return;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

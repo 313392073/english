@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>学生端-分析问卷</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/landscape.css">
+    <link rel="stylesheet" href="../../css/home-page.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/analysis-questionnaire.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+    <div class="scores-ranking">朗读问卷</div>
+    <div style="border-top: 1px solid #e6eaee;">
+        <div class="title">Advocate team spirtit</div>
+        <ul class="progress-graphics">
+            <li class="b active">B</li>
+            <li class="a">A</li>
+            <li class="s">S</li>
+            <li class="i">I</li>
+            <li class="c">C</li>
+        </ul>
+        <div id="tabContent">
+            <div class="tabContent" id="b" style="display: block;">
+                <ul class="question-list">
+                    <!--<li>
+                        <p>I'm sure the team will be fine</p>
+                        <div class="record-box">
+                            <i class="iconfont icon-luyin1"></i>
+                    <span class="inlineBlock recoid-item">
+                        <span>点击开始录音</span>
+                        &lt;!&ndash;<span class="already"></span>&ndash;&gt;
+                    </span>
+                            <b class="score">82分</b>
+                        </div>
+                    </li>-->
+                </ul>
+                <div class="nextTitle" onclick="getA(this,1);">下一题</div>
+            </div>
+            <div class="tabContent" id="a">
+                <ul class="question-list">
+
+                </ul>
+                <div class="nextTitle" onclick="getA(this,2);">下一题</div>
+            </div>
+            <div class="tabContent" id="s">
+                <ul class="question-list">
+
+                </ul>
+                <div class="nextTitle" onclick="getA(this,3);">下一题</div>
+            </div>
+            <div class="tabContent" id="i">
+                <ul class="question-list">
+
+                </ul>
+                <div class="nextTitle" onclick="getA(this,4);">下一题</div>
+            </div>
+            <div class="tabContent" id="c">
+                <ul class="question-list">
+
+                </ul>
+                <div class="nextTitle" onclick="subSentence();">提交</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<div id="record" class="rp" >
+    <div style="width:100%;height:10%;"></div>
+    <div class="rprogress">
+        <div class="rschedule"></div>
+    </div>
+    <br/>
+    <div id="rtime" class="rtime">00:00:00</div><br/>
+    <div class="stop" onclick="stopRecord()">停止</div>
+</div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+<script type="text/javascript" src="../../js/h5.js"></script>
+<script>
+    $('.progress-graphics li').click(function(){
+        var indexs=$(this).index();
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+        $('#tabContent .tabContent').hide();
+        $('#tabContent .tabContent').eq(indexs).show();
+
+    });
+    function getA(obj,num){
+        $(obj).parents('.tabContent').hide();
+        $(obj).parents('.tabContent').next().show();
+        $('.progress-graphics li').removeClass('active');
+        $('.progress-graphics li').eq(num).addClass('active');
+    }
+	function subSentence() {
+		console.log(JSON.stringify(array))
+		 $.ajax({
+			type: 'post',
+			url: server + '/stu/questionnaire/submit?token=' + token,
+			dataType: "json",
+			data:JSON.stringify(array),
+			contentType: 'application/json',
+			success: function (back) {
+				console.log(JSON.stringify(back));
+				
+				 
+			}
+		})
+		
+	}
+   getT();
+	 
+	 var array=[];
+	 var users=JSON.parse(localStorage.getItem('user'));
+	 var user=users.userLoginname;
+	 
+	 var everyObject={};
+    function getT(){
+        $.ajax({
+            type: 'GET',
+            url: server + 'stu/basic/get?token=' + token+'&batch='+ batch,
+            dataType: "json",
+            success: function (back) {
+               /* console.log(back) */
+                var result=back.obj;
+                for(var i=0;i<result.length;i++){
+                    var html='';
+                    html+='<li>';
+                    html+='<p>'+result[i].course_item+'</p>';
+                    html+='<div class="record-box">';
+                    html+='<i class="iconfont icon-luyin1"></i>';
+                    html+='<span class="inlineBlock recoid-item">';
+										if(result[i].if_handle!= 0){//未答题 
+											html+='<span style="display: inline-block;width: 100%;" onclick="startRecord(this)">点击开始录音</span>';
+											html+='<span class="already" style="display: inline-block;width: 100%;display:none;"></span>';
+										}else{
+											html+='<span class="already" style="display: inline-block;width: 100%;"></span>';
+										}
+                    html+='</span>';
+                    html+='<b class="score"></b>';
+                    html+='</div>';
+										html+='<input type="hidden" value="'+result[i].course_item_id+'"/>';
+                    html+='</li>';
+                    if(result[i].title=='B'){
+                        $("#b .question-list").append(html);
+                    }else if(result[i].title=='A'){
+                        $("#a .question-list").append(html);
+                    }else if(result[i].title=='S'){
+                        $("#s .question-list").append(html);
+                    }else if(result[i].title=='I'){
+                        $("#i .question-list").append(html);
+                    }else if(result[i].title=='C'){
+                        $("#c .question-list").append(html);
+                    }
+
+                }
+            }
+        })
+    }
+
+    var gentry = null,
+            hl = null,
+            le = null;
+    var er = null,
+            ep = null;
+    var bUpdated = false; //用于兼容可能提前注入导致DOM未解析完更新的问题
+    // H5 plus事件处理
+    function plusReady() {
+        // 获取音频目录对象
+        plus.io.resolveLocalFileSystemURL('_doc/', function(entry) {
+            entry.getDirectory('audio', {
+                create: true
+            }, function(dir) {
+                gentry = dir;
+                /* updateHistory(); */
+            }, function(e) {
+                outLine('Get directory "audio" failed: ' + e.message);
+            });
+        }, function(e) {
+            outLine('Resolve "_doc/" failed: ' + e.message);
+        });
+    }
+    if(window.plus) {
+        plusReady();
+    } else {
+        document.addEventListener('plusready', plusReady, false);
+    }
+
+    // DOMContentLoaded事件处理
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取DOM元素对象
+        er = document.getElementById('record');
+        rt = document.getElementById('rtime');
+        pt = document.getElementById('ptime');
+        pp = document.getElementById('progress');
+        /* updateHistory(); */
+    }, false);
+
+
+    function createItem(entry,parent,bofang) {
+			bofang.setAttribute('onclick', 'playAudio(this)');
+			bofang.entry = entry;
+			bofang.style.display="inline-block";
+			updateInformation(bofang);
+    }
+    // 开始录音
+    var r = null,
+            t = 0,
+            ri = null,
+            rt = null;
+
+    function startRecord(obj) {
+        r = plus.audio.getRecorder();
+        if(r == null) {
+            outLine('录音对象未获取');
+            return;
+        }
+        r.record({
+            filename: '_doc/audio/'
+        }, function(p) {
+            outLine('录音完成：' + p);
+            plus.io.resolveLocalFileSystemURL(p, function(entry) {
+               
+								var parent=obj.parentNode; 
+								var bofang=obj.nextSibling;
+								var ids=parseInt($(obj).parents('li').find('input[type="hidden"]').val());
+								obj.style.display="none";
+								createItem(entry,parent,bofang);
+                updateInformation(bofang);
+                addVoice(p,entry,bofang,ids);
+            }, function(e) {
+                outLine('读取录音文件错误：' + e.message);
+            });
+
+        }, function(e) {
+            outLine('录音失败：' + e.message);
+        });
+        er.style.display = 'block';
+        t = 0;
+        ri = setInterval(function() {
+            t++;
+            rt.innerText = timeToStr(t);
+        }, 1000);
+    } // 停止录音
+    function stopRecord() {
+        er.style.display = 'none';
+        rt.innerText = '00:00:00';
+        clearInterval(ri);
+        ri = null;
+        r.stop();
+        w = null;
+        r = null;
+        t = 0;
+    }
+    // 获取录音文件信息
+    function updateInformation(li){
+        if(!li || !li.entry){
+            return;
+        }
+        var entry = li.entry;
+        entry.getMetadata(function(metadata){
+            /* li.querySelector('.ainf').innerText = dateToStr(metadata.modificationTime); */
+        }, function(e){
+            outLine('获取文件"'+entry.name+'"信息失败：'+e.message);
+        } );
+    }
+    // 播放音频文件
+    function playAudio(li){
+			console.log(li.entry)
+        if(!li || !li.entry){
+            /* ouSet('无效的音频文件'); */
+            return;
+        }
+        /* outSet('播放音频文件：'+li.entry.name); */
+        startPlay('_doc/audio/'+li.entry.name);
+    }
+    function outLine(msg) {
+        $('#output').text(msg);
+    }
+
+    timeToStr = function(ts) {
+        if(isNaN(ts)) {
+            return "--:--:--";
+        }
+        var h = parseInt(ts / 3600);
+        var m = parseInt((ts % 3600) / 60);
+        var s = parseInt(ts % 60);
+        return(ultZeroize(h) + ":" + ultZeroize(m) + ":" + ultZeroize(s));
+    };
+
+    ultZeroize = function(v, l) {
+        var z = "";
+        l = l || 2;
+        v = String(v);
+        for(var i = 0; i < l - v.length; i++) {
+            z += "0";
+        }
+        return z + v;
+    };
+
+    function addVoice(path,entry,bofang,ids) {
+        /* console.log("entry = " + entry.name)
+         console.log("上传前的文件名：" + entry.name); */
+        var sss=entry.name;
+        uploadVoice(path,sss,bofang,ids);
+    }
+    var totalTime=0;
+
+   function uploadVoice(path,sss,bofang,ids) {
+   			var uploadUrl = "http://116.255.173.207/v1/api/comm/upload?token="+token+'&batch='+batch+'&fileType='+2+'&file='+sss+'&courseItemId='+ids;
+   			var task = plus.uploader.createUpload(uploadUrl, {
+   					method: "post"
+   				},
+   				function (t,status) {
+   
+   					// 上传完成
+   					if (status == 200 ) { 
+   						var data =JSON.parse(t.responseText);//返回的数据
+   						/* console.log(JSON.stringify(data)) */
+   						var msg=data.msg;
+   						var voicePath = msg.match(/解析成功:(\S*)/)[1];
+   						var param=data.obj.data.read_sentence.rec_paper.read_chapter;
+   						var fluency_score=parseFloat(param.fluency_score);//流利程度
+   						var integrity_score=parseFloat(param.integrity_score);//语法完整度
+   						var standard_score=parseFloat(param.standard_score);//声音清晰度
+   						var accuracy_score=parseFloat(param.accuracy_score);//语法精准度
+   						var total_score=parseFloat(param.total_score);//语感
+   						var courseItemId=ids;
+   						
+   						everyObject={};
+   						everyObject.fluencyScore=fluency_score;//流利程度
+   						everyObject.integrityScore=integrity_score;//完整度
+   						everyObject.accuracyScore=accuracy_score;//语法准确度
+   						everyObject.scoreVoiceClear=standard_score;//声音清晰度
+   						everyObject.scoreLangSense=total_score;//语感
+   						everyObject.classBatch=batch;
+   						everyObject.voicePath=voicePath;
+   						everyObject.userLoginname=user;
+   						everyObject.courseItemId=ids;
+   
+   						
+   						array.push(everyObject);
+   						/* console.log(JSON.stringify(array)) */
+							console.log(bofang)
+   						var score=parseInt(param.total_score);
+   						/* bofang.nextSibling.style.display="inline-block"; */
+							$(bofang).parent().next().text(score+'分');
+							
+   						/* bofang.nextSibling.firstElementChild.innerHTML=score+'分';
+   						bofang.nextSibling.lastElementChild.childNodes[0].style.width=score+"%"; */
+   						
+   						//获取 时长
+   						/* var p = plus.audio.createPlayer('_doc/audio/'+bofang.entry.name);
+   						var onlyTime=p.getDuration();
+   						totalTime=parseInt(totalTime)+parseInt(onlyTime);
+   						console.log(totalTime) */
+   					} else {
+   						outLine("上传失败：" + status);
+   						//wt.close();
+   					}
+   				}
+   			);
+   			task.addData("client", "HelloH5+");
+   			task.addData("uid", getUid());
+   			/*for(var i = 0; i < files.length; i++) {
+   				var f = files[i];
+   
+   				task.addFile(f.path, {
+   					key: f.name
+   				});
+   			}*/
+   			task.addFile(path, {
+   				key: "file"
+   			})
+   			task.start();
+   		}
+    // 产生一个随机数
+    function getUid() {
+        return Math.floor(Math.random() * 100000000 + 10000000).toString();
+    }
+
+    // 播放文件相关对象
+    var p = null,
+            pt = null,
+            pp = null,
+            ps = null,
+            pi = null;
+
+    function startPlay(url) {
+        //ep.style.display = 'block';
+        //var L = pp.clientWidth;
+        p = plus.audio.createPlayer(url);
+        p.play(function() {
+            outLine('播放完成！');
+            // 播放完成
+            /*pt.innerText = timeToStr(d) + '/' + timeToStr(d);
+             ps.style.webkitTransition = 'all 0.3s linear';
+             ps.style.width = L + 'px';
+             stopPlay();*/
+        }, function(e) {
+            outLine('播放音频文件"' + url + '"失败：' + e.message);
+        });
+        // 获取总时长
+        /*var d = p.getDuration();
+         if(!d) {
+         pt.innerText = '00:00:00/' + timeToStr(d);
+         }*/
+        /*pi = setInterval(function() {
+         if(!d) { // 兼容无法及时获取总时长的情况
+         d = p.getDuration();
+         }
+         var c = p.getPosition();
+         if(!c) { // 兼容无法及时获取当前播放位置的情况
+         return;
+         }
+         pt.innerText = timeToStr(c) + '/' + timeToStr(d);
+         var pct = Math.round(L * c / d);
+         if(pct < 8) {
+         pct = 8;
+         }
+         ps.style.width = pct + 'px';
+         }, 1000);*/
+    }
+
+    // 停止播放
+    function stopPlay() {
+        clearInterval(pi);
+        pi = null;
+        setTimeout(resetPlay, 500);
+        // 操作播放对象
+        if(p) {
+            p.stop();
+            p = null;
+        }
+    }
+
+    // 重置播放页面内容
+    function resetPlay() {
+        ep.style.display = 'none';
+        ps.style.width = '8px';
+        ps.style.webkitTransition = 'all 1s linear';
+        pt.innerText = '00:00:00/00:00:00';
+    }
+</script>
+</body>
+</html>

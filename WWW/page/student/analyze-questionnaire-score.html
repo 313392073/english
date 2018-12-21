@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>学生端-分析问卷得分情况</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/landscape.css">
+    <link rel="stylesheet" href="../../css/home-page.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/fill-questionnaire.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+    <div class="scores-ranking">分析问卷</div>
+    <div class="questionnaire-box">
+        <div class="questionnaire-title">Self-evaluation on Career Success</div>
+        <ul class="questionnaire-item">
+           <!-- <li>
+                <b class="fleft score" style="border:none;border-radius: 0;">+8分</b>
+                <div class="qidLIst">
+                    <div class="title timu">
+                        <span class="ticontent">I consult with team members on problems.I consult with team members on problems</span>
+                        <div class="fright opotionlist">
+                            <span>Always</span>
+                            <span>Sometimes</span>
+                            <span>Never</span>
+                        </div>
+                    </div>
+                    <div class="first timu">
+                        <span class="ticontent">I consult with team members on problemsI consult with team members on problemsI consult with team members on problems.</span>
+                        <div class="fright opotionlist">
+                            <span class="inlineBlock">
+                                <div class="radio">
+                                    <label for="">
+                                        <input  name="name1" type="radio">
+                                        <div class="option"></div>
+                                    </label>
+                                </div>
+                            </span>
+                            <span class="inlineBlock">
+                                <div class="radio">
+                                    <label for="">
+                                        <input  name="name1" type="radio">
+                                        <div class="option"></div>
+                                    </label>
+                                </div>
+                            </span>
+                            <span class="inlineBlock">
+                                <div class="radio">
+                                    <label for="">
+                                        <input  name="name1" type="radio">
+                                        <div class="option"></div>
+                                    </label>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="second timu">
+                        <span class="ticontent">I consult with team members on problems.</span>
+                        <div class="fright opotionlist">
+                            <span class="inlineBlock">
+                                <div class="radio">
+                                    <label for="">
+                                        <input  name="name3" type="radio">
+                                        <div class="option"></div>
+                                    </label>
+                                </div>
+                            </span>
+                            <span class="inlineBlock">
+                                <div class="radio">
+                                    <label for="">
+                                        <input  name="name3" type="radio">
+                                        <div class="option"></div>
+                                    </label>
+                                </div>
+                            </span>
+                            <span class="inlineBlock">
+                                <div class="radio">
+                                    <label for="">
+                                        <input  name="name3" type="radio">
+                                        <div class="option"></div>
+                                    </label>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>-->
+        </ul>
+        <h2 style="text-align: center;color: #0c77f8;line-height: 3rem;">总得分：<span id="total"></span>分</h2>
+    </div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+<script>
+    var total=0;//总得分
+    setTimeout(function(){
+        $(".layout-nav-right a").eq(1).parent().addClass("active");
+    },200);
+    var list=JSON.parse(localStorage.getItem('array'));
+    showQuestionnaire();
+    function showQuestionnaire(){
+        $.ajax({
+            type: 'GET',
+            url: server + 'stu/questionnaire/get?token='+token+'&batch='+batch,
+            dataType: "json",
+            success: function(back) {
+                console.log(back)
+                if (back.obj) {
+                    if (back.obj.length > 0) {
+                        for (var i = 1; i < back.obj.length + 1; i++) {
+                            total+=parseInt(back.obj[i - 1].choice_score);
+                            $('#total').text(total);
+                            var contentStr = '<li>' +
+                                    '<b class="fleft score" style="border:none;border-radius: 0;width: 2rem;align-items: center;line-height:3rem;color: #0c77f8;font-size: 0.8rem;padding-right: 0.8rem;">+'+back.obj[i - 1].choice_score+'分</b>'+
+                                    '<dl class="fleft">' +
+                                    '<dt>' + back.obj[i - 1].title + '</dt>' +
+                                    '<dd>' + back.obj[i - 1].course_item + '</dd>' +
+                                    '</dl>';
+                           /* if (back.obj[i - 1].if_handle != 0) {*/
+
+                                        contentStr +='<div class="fright opotionlist">';
+
+                                        contentStr +='<span class="inlineBlock">';
+                                        contentStr +='<div class="radio">';
+                                        contentStr +='<label for="">';
+                                        if(back.obj[i - 1].choice_score==5){
+                                            contentStr +='<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="5" checked> ';
+                                        }else{
+                                            contentStr +='<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="5" disabled>';
+                                        }
+                                        contentStr +='<div class="option"></div>';
+                                        contentStr +='</label>';
+                                        contentStr +='</div>';
+                                        contentStr += '<p>Always</p>';
+                                        contentStr +='</span>';
+                                        contentStr +='<span class="inlineBlock">';
+                                        contentStr +='<div class="radio">';
+                                        contentStr +='<label for="">';
+                                        if(back.obj[i - 1].choice_score==3){
+                                            contentStr +='<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="3" checked> ';
+                                        }else{
+                                            contentStr +='<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="3" disabled>';
+                                        }
+                                        contentStr += '<div class="option"></div>';
+                                        contentStr +='</label>';
+                                        contentStr +='</div>';
+                                        contentStr +='<p>Sometimes</p>';
+                                        contentStr +='</span>';
+                                        contentStr +='<span class="inlineBlock">';
+                                        contentStr +='<div class="radio">';
+                                        contentStr +='<label for="">';
+                                        if(back.obj[i - 1].choice_score==1){
+                                            contentStr +='<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="1" checked> ';
+                                        }else{
+                                            contentStr +='<input  name="' + back.obj[i - 1].course_item_id + '" type="radio" value="1" disabled>';
+                                        }
+
+                                        contentStr +='<div class="option"></div>';
+                                        contentStr +='</label>';
+                                        contentStr +='</div>';
+                                        contentStr +='<p>Never</p>';
+                                        contentStr += '</span>';
+                                        contentStr +='</div>';
+                               /* }*/
+                                contentStr += '</li>';
+                                var $content = $(contentStr);
+                                $(".questionnaire-item").append($content);
+
+                        }
+                    }
+                }
+            },
+            error: function(err){
+                alert('接口出错！')
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/landscape.css">
+    <link rel="stylesheet" href="../../css/home-page.css">
+    <style>
+        .contentBox{
+            margin:0 1.5rem;
+            width:92%;
+            min-height:8rem;
+            background-color:#eff3f6;
+            box-sizing: border-box;
+            padding:1rem;
+        }
+        .labelBox{
+            position: relative;
+            display: inline-block;
+            width: 7rem;
+            height: 2rem;
+            line-height: 2rem;
+            background-color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            margin:0 1rem 1rem 0;
+        }
+        .labelBox input[type="radio"]{
+            position: absolute;
+            top: 1.5rem;
+            left: 3rem;
+        }
+        .labelBox>span{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            color:#1c94ed;
+            border-radius: 4px;
+        }
+        .labelBox input[type="radio"]:checked+span{
+            background-color:#1c94ed;
+            color:#fff;
+        }
+        .submitBtn{
+            width:6rem;
+            height:2rem;
+            line-height:2rem;
+            text-align: center;
+            color:#fff;
+            background-color:#1c94ed;
+            border-radius: 5px;
+            margin:2rem auto;
+            font-size:0.7rem;
+        }
+    </style>
+</head>
+<body>
+<div class="layout-left close" ></div>
+<div class="common-content" style="right: 0;">
+    <div class="scores-ranking" style="margin-top: 3rem;">选择班级</div>
+    <div style="" class="contentBox">
+       <!-- <label for="a1" class="labelBox">
+            <input type="radio"  name="names" id="a1"/>
+            <span>班级名称<b>·</b>专业</span>
+        </label>
+        <label for="a2" class="labelBox">
+            <input type="radio"  name="names" id="a2"/>
+            <span>班级名称<b>·</b>专业</span>
+        </label>
+        <label for="a3" class="labelBox">
+            <input type="radio" name="names" id="a3"/>
+            <span>班级名称<b>·</b>专业</span>
+        </label>-->
+    </div>
+    <div class="submitBtn" onclick="doRes();">确认</div>
+</div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js"></script>
+<script>
+    $(function(){
+        getList();
+    });
+    function getList() {
+        $.ajax({
+            type: 'GET',
+            url: server + 'user/regist_info',
+            data: {
+                'userType': 0
+            },
+            dataType: "json",
+            success: function (back) {
+                console.log(back)
+                if(back.obj){
+                    for(var i=0;i<back.obj.length;i++){
+                        var html='<label for="a'+(i+1)+'" class="labelBox">'+
+                        '<input type="radio"  name="names" id="a'+(i+1)+'" value="'+back.obj[i].sys_class_id+'"/>'+
+                        '<span>'+back.obj[i].classname+'<b>·</b>'+back.obj[i].majorname+'</span>'+
+                        '</label>';
+                        $('.contentBox').append(html);
+                    }
+                }
+            },
+            error: function (err) {
+                alert('接口出错！')
+            }
+        })
+    }
+    function showWindowHref(){
+        var sHref = window.location.href;
+        var args = sHref.split('?');
+        if(args[0] == sHref){
+            return "";
+        }
+        var arr = args[1].split('&');
+        var obj = {};
+        for(var i = 0;i< arr.length;i++){
+            var arg = arr[i].split('=');
+            obj[arg[0]] = arg[1];
+        }
+        return obj;
+    }
+    var href = showWindowHref();
+    var account=href['account'],
+            secret=href['secret'],
+            headImage=href['headImage'];
+
+    function doRes(){
+        var classId=$('.contentBox').find('input[type="radio"]:checked').val();
+        if(classId!=="undefined"){
+
+            $.ajax({
+                type: 'POST',
+                url: server + 'user/regist',
+                data:{
+                    'userLoginname':account,
+                    'userPassword':secret,
+                    'headImage':headImage,
+                    'classId':classId,
+                    'userType':0
+                },
+                dataType: "json",
+                success: function(back){
+                    alert(back.msg);
+                },
+                error: function(err){
+
+                    alert('接口出错！')
+                }
+            });
+        }
+
+    }
+</script>
+</body>
+</html>

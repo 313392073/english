@@ -1,0 +1,112 @@
+@charset "utf-8";
+.questionnaire-box{
+	border-top:1px solid #e6eaee;
+	
+}
+.questionnaire-box .questionnaire-title{
+	line-height:3rem;
+	text-align: center;
+	font-size:1rem;
+}
+.questionnaire-box .questionnaire-item>li{
+	height:3rem;
+	margin:0 auto 1rem;
+	width:90%;
+	border:1px solid #fcfcfc;
+	box-shadow: 5px 2px 5px #e9e9e9;
+	padding:0.5rem;
+	
+}
+#analyze-list li{height:4.5rem;display: flex;}
+#analyze-list li .score{
+	width:2rem;
+	align-items: center;
+	line-height: 4.5rem;
+	color: #0c77f8;
+	font-size:0.8rem;
+	padding-right: 0.8rem;
+}
+#analyze-list li .qidLIst{
+	flex:1;
+	width: 90%;
+	font-size:0.7rem;
+}
+#analyze-list li .qidLIst .title{
+	color:#333;
+	font-size:0.8rem;
+	font-weight: bold;
+}
+#analyze-list li .qidLIst .timu .ticontent{flex:1;overflow: hidden;white-space: nowrap;/*不换行*/
+	text-overflow:ellipsis;/*超出部分文字以...显示*/ }
+#analyze-list li .qidLIst .timu{
+	display: flex;
+	justify-content: space-between;
+	line-height: 1.5rem;
+}
+#analyze-list li .qidLIst .timu .opotionlist{width:12rem;}
+#analyze-list li .qidLIst .timu .opotionlist span{
+	float:left;
+	width:33.3%;
+	text-align: center;
+	font-size:0.7rem;
+}
+#analyze-list li dd{
+	line-height: 1.5rem;
+	font-size: 0.7rem;
+}
+
+.questionnaire-box .questionnaire-item>li>.qid{
+	width:2rem;
+	height:2rem;
+	line-height:2rem;
+	text-align: center;
+	color:#0c77f8;
+	font-size:0.8rem;
+	border:1px solid #0c77f8;
+	border-radius: 50%;
+	margin:0.5rem 1rem 0 0.5rem;
+}
+.questionnaire-box .questionnaire-item>li>dl>dt{
+	font-size:0.9rem;
+	line-height: 1.8rem;
+}
+.questionnaire-box .questionnaire-item>li>dl>dd{color:#646464;}
+/* .questionnaire-box .questionnaire-item>li .opotionlist a{
+	display: inline-block;
+	width:1rem;
+	height:1rem;
+}*/
+.questionnaire-box .questionnaire-item>li .opotionlist>span.inlineBlock{
+	width:4rem;
+	text-align: center;
+} 
+.questionnaire-item>li .opotionlist label {                 /*设置label的样式*/
+    width: 100%;
+    display: block;
+    line-height: 20px;
+    position: relative;
+    font-weight: normal;
+}
+.radio .option {      /*把优化后的按钮图片设置为该div的背景图片，把该div定位到原生样式的上方，遮盖住原生样式。*/
+    width:1.2rem;
+    height:1.2rem;
+    position: absolute;
+    top: 5px;
+    left: 1.5rem;
+    background-size: cover;
+    background: url(../images/uncheck.png) no-repeat;
+    background-size: cover;
+}
+.radio input[type="radio"] {  /*为了保险起见，把原生样式隐藏掉*/
+    display: inline-block ;
+	position:relative;
+	width:1.4rem;
+	height:1.4rem;
+	z-index:10;
+   opacity: 0 ;
+	margin:0;
+}
+input[type="radio"]:checked+div {  /*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+    background: url(../images/check.png) no-repeat;
+    background-size: cover;
+}

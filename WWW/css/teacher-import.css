@@ -1,0 +1,77 @@
+@charset "utf-8";
+.teacher-import{
+	padding:1rem 0;
+	display: flex;
+	}
+.teacher-import .choose-list{
+	margin-left:0.4rem;
+	width:65%;
+	/* border:1px solid green; */
+}
+.teacher-import .right-yuyin{
+	margin:0 0.4rem;
+	flex:1;
+	border:1px solid #e6eaee;
+}
+.teacher-import .choose-list>ul>li{
+	display: flex;
+	width:49%;
+	float: left;
+	border:1px solid #e6eaee;
+	border-radius: 3px;
+	box-sizing: border-box;
+	padding:0.6rem;
+	line-height: 1rem;
+	margin-bottom:1rem;
+}
+.teacher-import .choose-list>ul>li>.categroy{
+	width:70%;
+	padding-left: 0.5rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.teacher-import .choose-list>ul>li>.checkbox{
+	width:1.2rem;
+}
+.teacher-import .choose-list>ul>li>.checkbox label{
+	width: 100%;
+    display: block;
+    line-height: 20px;
+    position: relative;
+    font-weight: normal;
+}
+.teacher-import .choose-list>ul>li>.checkbox label>input[type="checkbox"]{
+	display: inline-block;
+	    position: relative;
+	    width: 1.2rem;
+	    height: 1.2rem;
+	    z-index: 10;
+	    opacity: 0;
+	    margin: 0;
+}
+.teacher-import .choose-list>ul>li>.checkbox label>input[type="checkbox"]:checked+div {  /*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+    background: url(../images/check.png) no-repeat;
+    background-size: cover;
+}
+.teacher-import .choose-list>ul>li>.checkbox label>.option {
+    width: 1.2rem;
+    height: 1.2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background: url(../images/uncheck.png) no-repeat;
+    background-size: cover;
+}
+.teacher-import .choose-list>ul>li>.peopleNum{
+	flex:1;
+	text-align: right;
+}
+.teacher-import .choose-list>ul>li:nth-child(2n){
+	margin-left:0.4rem;
+}
+.teacher-import .voice-dialogue-box .student{width: 100%;}
+.right-yuyin .yuyin {
+    width: 80%;
+}

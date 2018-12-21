@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>教师端-同伴共振</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/home-page.css">
+	<link rel="stylesheet" href="../../css/companion-resonance.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking">同伴共振</div>
+	<div style="border-top:1px solid #e6eaee;overflow: hidden;">
+		<ul class="left-group-list fleft">
+
+		</ul>
+		<!-- 右侧 -->
+		<div class="eachGroup-details">
+			<div class="summarize-box">
+				<div class="fluid col group-name">
+					<h2 id="groupname"></h2>
+					<div class="inlineBlock">
+						<img src="" alt="" id="groupuser1">
+						<span class="showdiv" id="groupuserName1"></span>
+					</div>
+					<div class="inlineBlock">
+						<img src="" alt="" id="groupuser2">
+						<span class="showdiv" id="groupuserName2"></span>
+					</div>
+					<p id="groupScore"></p>
+				</div>
+				<div class="col fixed">
+					<div class="oral-score fleft" style="width:100%;">
+						<div class="oral-score-title">
+							<span class="left">小组口语评分</span>
+						</div>
+						<div class="oral-score-box">
+							<div class="left fleft" style="width:100%;border:none;">
+								<ul class="oral-score-detail">
+									<li>
+										<div class="oral-text inlineBlock">
+											<p>流利程度</p>
+											<h3 id="fluencyScore">84分</h3>
+										</div>
+										<div class="oral-proess inlineBlock">
+											<span class="img-shadow"><img src="../../images/img1.png" alt=""></span>
+											<span class="progress-back">
+												<span class="progress-bar"  id="fluencyScore_s"style="background-color:#1d94ed;"></span>
+											</span>
+										</div>
+									</li>
+									<li>
+										<div class="oral-text inlineBlock">
+											<p>语法准确度</p>
+											<h3 id="accuracyScore">84分</h3>
+										</div>
+										<div class="oral-proess inlineBlock">
+											<span class="img-shadow"><img src="../../images/img3.png" alt=""></span>
+											<span class="progress-back">
+												<span class="progress-bar"  id="accuracyScore_s" style="background-color:#8e77e4;"></span>
+											</span>
+										</div>
+									</li>
+									<li>
+										<div class="oral-text inlineBlock">
+											<p>声音清晰度</p>
+											<h3 id="scoreVoiceClear">84分</h3>
+										</div>
+										<div class="oral-proess inlineBlock">
+											<span class="img-shadow"><img src="../../images/img4.png" alt=""></span>
+											<span class="progress-back">
+												<span class="progress-bar" id="scoreVoiceClear_s" style="background-color:#3ec229;"></span>
+											</span>
+										</div>
+									</li>
+									<li>
+										<div class="oral-text inlineBlock">
+											<p>语法完整度</p>
+											<h3 id="integrityScore">84分</h3>
+										</div>
+										<div class="oral-proess inlineBlock">
+											<span class="img-shadow"><img src="../../images/img5.png" alt=""></span>
+											<span class="progress-back">
+												<span class="progress-bar" id="integrityScore_s" style="background-color:#fac639;"></span>
+											</span>
+										</div>
+									</li>
+									<li>
+										<div class="oral-text inlineBlock">
+											<p>语感</p>
+											<h3 id="scoreLangSense">84分</h3>
+										</div>
+										<div class="oral-proess inlineBlock">
+											<span class="img-shadow"><img src="../../images/img2.png" alt=""></span>
+											<span class="progress-back">
+												<span class="progress-bar" id="scoreLangSense_s" style="background-color:#4c6f97;"></span>
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="fluid col ">
+					<div class="column">
+						<div class="oral-score-title" style="border:none;border-bottom: 1px solid #e6eaee;">
+							<span class="left">读错字</span>
+						</div>
+							<ul class="read-typo-list" id="errorWords">
+							<!--<li>immediately</li>
+							<li>construction</li>
+							<li>accept</li>
+							<li>chilly</li>
+							<li>international</li>
+							<li>accept</li>-->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 对话框 -->
+			<div class="dialog-box">
+				<span class="check-detail fright">查看小组详情>></span>
+				<ul class="dialog-box-list">
+					<!--<li>
+						<img src="../../images/03.png" alt=""/>
+						<div>
+							<h3>Bessie</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sequi aspernatur quaerat architecto quas veniam ad quis. Quas eius sunt laboriosam neque rerum autem fugit voluptas ab vero iusto at!</p>
+						</div>
+					</li>
+					<li>
+						<img src="../../images/01.png" alt=""/>
+						<div>
+							<h3>Jorden Jokeson</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sequi aspernatur quaerat architecto quas veniam ad quis. Quas eius sunt laboriosam neque rerum autem fugit voluptas ab vero iusto at!</p>
+						</div>
+					</li>
+					<li>
+						<img src="../../images/03.png" alt=""/>
+						<div>
+							<h3>Bessie</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure sequi aspernatur quaerat architecto quas veniam ad quis. Quas eius sunt laboriosam neque rerum autem fugit voluptas ab vero iusto at!</p>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/landscape.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/teacher.js"></script>
+	<script>
+		getLeftList();
+		var groupId;
+		$(function(){
+			$('.left-group-list').on('click','.group-item',function(){
+				if(!$(this).hasClass('active')){
+					$(this).addClass('active');
+					groupId=$(this).find('input[type="hidden"]').val();//组id
+					everyTeam(groupId);
+					dialogueList(groupId);
+					$(this).siblings().removeClass('active');
+				}
+			})
+		})
+		function everyTeam(groupId){
+			$.ajax({
+				type: 'GET',
+				url: server + 'tea/group_mut/list?token=' + token + '&groupId=' + 1,
+				dataType: "json",
+				success: function (back) {
+					if(back.obj.length>0){
+						for(var i=0;i<back.obj.length;i++){
+							if(back.obj[i].groupId==groupId){
+								$('#groupname').text(back.obj[i].groupname+'组');
+								if(back.obj[i].groupuser!==null){
+									var arr=back.obj[i].groupuser.split(',');
+									$('#groupuser1').attr('src',arr[0]);
+									$('#groupuser2').attr('src',arr[1]);
+								}
+								if(back.obj[i].groupuserName!==null){
+									var array=back.obj[i].groupuserName.split(',');
+									$('#groupuserName1').text(array[0]);
+									$('#groupuserName2').text(array[1]);
+								}
+								$('#groupScore').text(back.obj[i].groupScore+'分');
+								$('#fluencyScore').text(back.obj[i].fluencyScore+'分');
+								$('#fluencyScore_s').css('width',back.obj[i].fluencyScore+'%');
+								$('#integrityScore').text(back.obj[i].integrityScore+'分');
+								$('#integrityScore_s').css('width',back.obj[i].integrityScore+'%');
+								$('#scoreVoiceClear').text(back.obj[i].scoreVoiceClear+'分');
+								$('#scoreVoiceClear_s').css('width',back.obj[i].scoreVoiceClear+'%');
+								$('#accuracyScore').text(back.obj[i].accuracyScore+'分');
+								$('#accuracyScore_s').css('width',back.obj[i].accuracyScore+'%');
+								$('#scoreLangSense').text(back.obj[i].scoreLangSense+'分');
+								$('#scoreLangSense_s').css('width',back.obj[i].scoreLangSense+'%');
+								if(back.obj[i].errorWords!==null){
+									var array=back.obj[i].errorWords.split(',');
+									for(var i=0;i<array.length;i++){
+										var html='<li>'+array[i]+'</li>';
+										$('#errorWords').append(html);
+									}
+								}else{
+									$('#errorWords').html('暂无记录！')
+								}
+							}
+						}
+					}
+				}
+			})
+		}
+		function getLeftList(){
+			$.ajax({
+				type: 'GET',
+				url: server + 'tea/group_mut/list?token=' + token+'&groupId='+1,
+				dataType: "json",
+				success: function (back) {
+					console.log(back)
+					var photo,name;
+					if(back.obj.length>0){
+						for(var i=0;i<back.obj.length;i++){
+							photo=(back.obj[i].groupuser).split(',');
+							name=(back.obj[i].groupuserName).split(',');
+							var html='';
+							if(i==0){
+								html+='<li class="group-item active">';
+							}else{
+								html+='<li class="group-item">';
+							}
+							html+='<b class="group-name">'+back.obj[i].groupname+'组</b>';
+							html+='<span>';
+							html+='<span class="fixwidth">'+name[0]+'</span>';
+							html+='<img src="'+photo[0]+'" alt="">';
+							html+='</span>';
+							html+='<span>';
+							html+='<img src="'+photo[1]+'" alt="">';
+							html+='<span>'+name[1]+'</span>';
+							html+='</span>';
+							html+='<span class="score fright">'+back.obj[i].groupScore+'分</span>';
+							html+='<input type="hidden" value="'+back.obj[i].groupId+'"/>';
+							html+='</li>';
+							$('.left-group-list').append(html);
+						}
+						groupId=$('.left-group-list li.active').find('input[type="hidden"]').val();
+						everyTeam(groupId);
+						dialogueList(groupId);
+					}
+				}
+			})
+		}
+		function dialogueList(groupId){
+			$('.dialog-box-list').html('');
+			$.ajax({
+				type: 'GET',
+				url: server + 'comm/group/voice/list?token=' + token + '&groupType=' + 2 + '&groupId=' + groupId,
+				dataType: "json",
+				success: function (back) {
+					console.log(back)
+					if(back.obj.length>0){
+						for(var i=0;i<back.obj.length;i++) {
+							var html='<li>'+
+							'<img src="'+back.obj[i].user_head_image+'" alt=""/>'+
+							'<div>'+
+							'<h3>'+back.obj[i].user_name+'</h3>'+
+							'<p>'+back.obj[i].dialog_voice_text+'</p>'+
+							'</div>'+
+							'</li>';
+							$('.dialog-box-list').append(html);
+						}
+
+					}
+				}
+			})
+		}
+		$('.check-detail').click(function(){
+			localStorage.setItem('groupId',groupId);
+			window.location.href="companion-resonance-detail.html";
+		})
+	</script>
+</body>	
+</html>

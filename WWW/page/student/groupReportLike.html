@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-小组汇报</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/groupReport.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking">小组汇报</div>
+	<div class="group-box">
+		<div class="group-section">
+			<span>点赞排行榜</span>
+		</div>
+		<div class="group-list-box">
+			<ul class="group-list" id="group-list">
+				<!--<li class="group-item">
+					<span class="group-item-icon bg-A">A组</span>
+					<div class="group-item-img">
+						<img src="../../images/01.png" alt="" />
+						<img src="../../images/02.png" alt="" />
+						<img src="../../images/03.png" alt="" />
+						<img src="../../images/01.png" alt="" />
+					</div>
+					<div class="group-item-like">
+						<h2>第一名</h2>
+						<span class="group-like-num">22个赞</span>
+					</div>
+					<div calss="group-item-step">
+						<div class="group-item-step-content">
+							<h2>老师评语</h2>
+							<p class="group-item-step-text">小组成员合作默契，彼此之间能够实现口语沟通交流。多使用一些句型，不要害怕说错，大胆说出口。</p>
+						</div>
+						<div class="group-item-step-content">
+							<h2>小组总结</h2>
+							<p class="group-item-step-text">经过此次训练，我们知道了口语中自己存在的问题，通过课后练习完善自己的发音问题。</p>
+						</div>
+					</div>
+				</li>
+				<li class="group-item">
+					<span class="group-item-icon bg-B">B组</span>
+					<div class="group-item-img">
+						<img src="../../images/01.png" alt="" />
+						<img src="../../images/02.png" alt="" />
+						<img src="../../images/03.png" alt="" />
+						<img src="../../images/01.png" alt="" />
+					</div>
+					<div class="group-item-like">
+						<h2>第二名</h2>
+						<span class="group-like-num">18个赞</span>
+					</div>
+					<div calss="group-item-step">
+						<div class="group-item-step-content">
+							<h2>老师评语</h2>
+							<p class="group-item-step-text">小组成员合作默契，彼此之间能够实现口语沟通交流。多使用一些句型，不要害怕说错，大胆说出口。</p>
+						</div>
+						<div class="group-item-step-content">
+							<h2>小组总结</h2>
+							<p class="group-item-step-text">经过此次训练，我们知道了口语中自己存在的问题，通过课后练习完善自己的发音问题。</p>
+						</div>
+					</div>
+				</li>
+				<li class="group-item">
+					<span class="group-item-icon bg-C">C组</span>
+					<div class="group-item-img">
+						<img src="../../images/01.png" alt="" />
+						<img src="../../images/02.png" alt="" />
+						<img src="../../images/03.png" alt="" />
+						<img src="../../images/01.png" alt="" />
+					</div>
+					<div class="group-item-like">
+						<h2>第三名</h2>
+						<span class="group-like-num">12个赞</span>
+					</div>
+					<div calss="group-item-step">
+						<div class="group-item-step-content">
+							<h2>老师评语</h2>
+							<p class="group-item-step-text">小组成员合作默契，彼此之间能够实现口语沟通交流。多使用一些句型，不要害怕说错，大胆说出口。</p>
+						</div>
+						<div class="group-item-step-content">
+							<h2>小组总结</h2>
+							<p class="group-item-step-text">经过此次训练，我们知道了口语中自己存在的问题，通过课后练习完善自己的发音问题。</p>
+						</div>
+					</div>
+				</li>
+				<li class="group-item">
+					<span class="group-item-icon bg-D">D组</span>
+					<div class="group-item-img">
+						<img src="../../images/01.png" alt="" />
+						<img src="../../images/02.png" alt="" />
+						<img src="../../images/03.png" alt="" />
+						<img src="../../images/01.png" alt="" />
+					</div>
+					<div class="group-item-like">
+						<h2>第四名</h2>
+						<span class="group-like-num">6个赞</span>
+					</div>
+					<div calss="group-item-step">
+						<div class="group-item-step-content">
+							<h2>老师评语</h2>
+							<p class="group-item-step-text">小组成员合作默契，彼此之间能够实现口语沟通交流。多使用一些句型，不要害怕说错，大胆说出口。</p>
+						</div>
+						<div class="group-item-step-content">
+							<h2>小组总结</h2>
+							<p class="group-item-step-text">经过此次训练，我们知道了口语中自己存在的问题，通过课后练习完善自己的发音问题。</p>
+						</div>
+					</div>
+				</li>
+			-->
+			</ul>
+		</div>
+	</div>
+	</div>
+	<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+	<script src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/landscape.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/student.js" ></script>
+	<script>
+		setTimeout(function(){
+			$(".layout-nav-right a").eq(8).parent().addClass("active");
+		},200);
+		
+	showOrderList();
+	
+	function showOrderList(){
+		$.ajax({
+			type: 'GET',
+			url: server + 'stu/group/list?token='+token,
+			dataType: "json",
+			success: function(back){
+				if(back.obj){
+					var result=back.obj.grouplist;
+					if(result.length>0){
+						for(var i=0;i<result.length;i++){
+						
+							var likesImage = '';
+							if(result[i].groupuser){
+								var likesImageArr =result[i].groupuser.split(",");
+								for(var j=0; j<likesImageArr.length; j++){
+									likesImage += '<img src="'+likesImageArr[j]+'" alt="" />';
+								}
+							}
+						
+							var $content = $('<li class="group-item">'+
+								'<span class="group-item-icon  bg-'+i+'"">'+result[i].groupname+'</span>'+
+								'<div class="group-item-img">'+
+									likesImage+
+								'</div>'+
+								'<div class="group-item-like">'+
+									'<h2>第'+(i+1)+'名</h2>'+
+									'<span class="group-like-num">'+result[i].likes_user_num+'个赞</span>'+
+								'</div>'+
+								'<div calss="group-item-step">'+
+									'<div class="group-item-step-content">'+
+										'<h2>老师评语</h2>'+
+										'<p class="group-item-step-text">'+result[i].tea_comment+'</p>'+
+									'</div>'+
+									'<div class="group-item-step-content">'+
+										'<h2>小组总结</h2>'+
+										'<p class="group-item-step-text">'+result[i].group_comment+'</p>'+
+									'</div>'+
+								'</div>'+
+							'</li>');
+							$("#group-list").append($content);
+							var g_width = $('.group-item').width()+48,
+									g_len = $('.group-item').length,
+									$g_list = $('.group-list');
+							$g_list.width(g_width * g_len);
+						}
+					}
+					return;
+				}
+			},
+			error: function(err){
+				alert('接口出错！')
+			}
+		});
+	}
+	</script>
+</body>
+</html>

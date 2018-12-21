@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	 <meta content="width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=1.0" id="viewport" name="viewport">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>教师端-首页</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/home-page.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+	<div class="layout-left close"></div>
+	<div class="common-content">
+		<div class="scores-ranking">课堂成绩排行榜</div>
+		<div class="home-student-list">
+			<ul class="clr" id="home-student-list">
+				<!--<li>
+					<div class="home-student-photo">
+						<img src="../../images/user.png" alt="">
+					</div>
+					<div>Nikly</div>
+				</li>-->
+			</ul>
+		</div>
+		<div class="home-student-detail">
+			<div class="oral-score fleft">
+				<div class="oral-score-title">
+					<span class="left">口语评分</span>
+					<span class="fright">历史评分>></span>
+				</div>
+				<div class="oral-score-box">
+					<div class="left fleft">
+						<ul class="oral-score-detail">
+							<li>
+								<div class="oral-text inlineBlock">
+									<p>流利程度</p>
+									<h3><span id="liuli">0</span>分</h3>
+								</div>
+								<div class="oral-proess inlineBlock">
+									<span class="img-shadow"><img src="../../images/img1.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" style="background-color:#1d94ed;"></span>
+								</span>
+								</div>
+							</li>
+							<li>
+								<div class="oral-text inlineBlock">
+									<p>语法准确度</p>
+									<h3><span id="gramzhunque">0</span>分</h3>
+								</div>
+								<div class="oral-proess inlineBlock">
+									<span class="img-shadow"><img src="../../images/img3.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" style="background-color:#8e77e4;"></span>
+								</span>
+								</div>
+							</li>
+							<li>
+								<div class="oral-text inlineBlock">
+									<p>声音清晰度</p>
+									<h3><span id="qingxi">0</span>分</h3>
+								</div>
+								<div class="oral-proess inlineBlock">
+									<span class="img-shadow"><img src="../../images/img4.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" style="background-color:#3ec229;"></span>
+								</span>
+								</div>
+							</li>
+							<li>
+								<div class="oral-text inlineBlock">
+									<p>语法完整度</p>
+									<h3><span id="liuli">0</span>分</h3>
+								</div>
+								<div class="oral-proess inlineBlock">
+									<span class="img-shadow"><img src="../../images/img5.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar"  style="background-color:#fac639;"></span>
+								</span>
+								</div>
+							</li>
+							<li>
+								<div class="oral-text inlineBlock">
+									<p>语感</p>
+									<h3><span id="yugan">0</span>分</h3>
+								</div>
+								<div class="oral-proess inlineBlock">
+									<span class="img-shadow"><img src="../../images/img2.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar"  style="background-color:#4c6f97;"></span>
+								</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="other-score">
+						<h3>其他项得分</h3>
+						<ul class="other-score-list">
+							<li>
+								<span>本次口语时长(s)</span>
+								<span>1529</span>
+							</li>
+							<li>
+								<span>本课句型频次</span>
+								<span>31次</span>
+							</li>
+							<li>
+								<span>读错字数</span>
+								<span>12个</span>
+							</li>
+							<li>
+								<span>劝告句式加分</span>
+								<span>10分</span>
+							</li>
+							<li>
+								<span>自我修改意见获赞</span>
+								<span>10个</span>
+							</li>
+							<li>
+								<span>分享偶像ppt获赞</span>
+								<span>10个</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 右侧的学习报告 -->
+			<div class="submit-state">
+				<div class="study-reports">
+					<i class="iconfont icon-download"></i>生成学习报告
+				</div>
+				<ul class="submitted-work" id="submitted-work-list">
+					<!--<li>
+						<div class="submitted-work-title">
+							<i class="iconfont icon-youjian" style="color:#259af3;"></i>
+							<span>已提交作业:朗读短句</span>
+							<i class="iconfont icon-chexiao" style="color:#aeb6c5;float:right;font-size:10px;"></i>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore a nobis reprehenderit quaerat voluptatum obcaecati suscipit veniam tempore sit nesciunt ipsum minima tempora quisquam incidunt rem accusantium officia eius molestiae.
+						</p>
+					</li>
+					<li>
+						<div class="submitted-work-title">
+							<i class="iconfont icon-youjian" style="color:#259af3;"></i>
+							<span>已提交作业:朗读短句</span>
+							<i class="iconfont icon-chexiao" style="color:#aeb6c5;float:right;font-size:10px;"></i>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore a nobis reprehenderit quaerat voluptatum obcaecati suscipit veniam tempore sit nesciunt ipsum minima tempora quisquam incidunt rem accusantium officia eius molestiae.
+						</p>
+					</li>
+					<li>
+						<div class="submitted-work-title">
+							<i class="iconfont icon-youjian" style="color:#259af3;"></i>
+							<span>已提交作业:朗读短句</span>
+							<i class="iconfont icon-chexiao" style="color:#aeb6c5;float:right;font-size:10px;"></i>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora amet illo impedit dolore quos error molestiae obcaecati quidem omnis quaerat asperiores ab natus laborum id accusamus suscipit repudiandae! Minus voluptatibus.
+						</p>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<!-- 底部数据展示 -->
+		<div class="home-statistical">
+			<div class="class-rank">
+				<h1><span id ="rank_num">0</span></h1>
+				<p style="color:#1e96ee;">班级口语排名</p>
+				<div class="poorly">
+					<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+					<span>排名较上次上升<span id ="last_rank_num">-</span>名</span>
+				</div>
+			</div>
+			<div class="score-statistics">
+				<h1><span id ="score">0</span></h1>
+				<p style="color:#3ec328;">分数统计</p>
+				<div class="poorly">
+					<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+					<span>分数较上次提高<span id ="last_score">-</span>分</span>
+				</div>
+			</div>
+			<div class="won-praise">
+				<h1><span id ="likes_user_num">0</span></h1>
+				<p>获赞数</p>
+				<div class="poorly">
+					<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+					<span>获赞数较上次增加<span id ="likes_user_num_last">-</span>个</span>
+				</div>
+			</div>
+			<div class="basic">
+				<h1><span id ="gross_score_basic">0</span></h1>
+				<p style="color:#fac63a;">BASIC</p>
+				<div class="poorly">
+					<i class="iconfont icon-xiajiang" style="color:#d35847;"></i>
+					<span>分数较上次增加<span id ="gross_score_basic_last">-</span>分</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/landscape.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/teacher.js"></script>
+	<script>
+	
+	showAllData();
+
+	var changeDataArr=new Array()
+	function showAllData(){
+		$.ajax({
+			type: 'GET',
+			url: server + 'tea/home?token='+token+'&batch='+batch,
+			dataType: "json",
+			success: function(back){
+				console.log(back)
+				if(back.obj.stuScores){
+					if(back.obj.stuScores.length>0){
+						for(var i=0;i<back.obj.stuScores.length;i++){
+							var userget = back.obj.stuScores[i];
+							changeDataArr[i] = userget.scores;
+							var userPhotoList='';
+							if(i==0){
+								"' + pageId + '","' + pageTotal + '"
+								userPhotoList+= '<li class="active" onclick="changeData('+i+')">';
+							}else{
+								userPhotoList+= '<li onclick="changeData('+i+')">';
+							}
+							userPhotoList += '<div class="home-student-photo">';
+							userPhotoList += '<img src="'+userget.image+'" alt="">';
+							userPhotoList += '</div>';
+							userPhotoList += '<div>'+userget.name+'</div>';
+							userPhotoList += '</li>';
+							var $uPList = $(userPhotoList);
+							$("#home-student-list").append($uPList);
+							$('#home-student-list li').each(function(){
+								$(this).click(function(){
+									$(this).addClass('active');
+									$(this).siblings().removeClass('active');
+								})
+							})
+						}
+					}
+					changeData(0);
+				}
+				if(back.obj.stulogs){
+					var userLogList = '';
+					for(var i=0;i<back.obj.stulogs.length;i++){
+						userLogList += '<li>'+
+							'<div class="submitted-work-title">'+
+								'<i class="iconfont icon-youjian" style="color:#259af3;"></i>';
+								//0英语问卷提交，1英语短句提交，2英语自我诊断提交，3英语BASIC提交
+								if(back.obj.stulogs[i].optType==1)
+								userLogList+='<span>已提交作业:问卷调查</span>';
+								else if(back.obj.stulogs[i].optType==2)
+								userLogList+='<span>已提交作业:朗读短句</span>';
+								else if(back.obj.stulogs[i].optType==3)
+								userLogList+='<span>已提交作业:自我诊断</span>';
+								else if(back.obj.stulogs[i].optType==4)
+								userLogList+='<span>已提交作业:BASIC测试</span>';
+								userLogList+='<i class="iconfont icon-chexiao" style="color:#aeb6c5;float:right;font-size:10px;"></i>'+
+							'</div>'+
+							'<p>'+back.obj.stulogs[i].remark+'</p>'+
+						'</li>';
+					}
+					var $uPList = $(userLogList);
+					$("#submitted-work-list").append($uPList);
+				}
+			},
+			error: function(err){
+				alert('接口出错！')
+			}
+		});
+	}
+
+	function changeData(i){
+		/*$(obj).addClass('active');
+		$(obj).siblings().removeClass('active');*/
+			$("#liuli").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].fluency_score) == "undefined"?'0':changeDataArr[i].fluency_score);
+			$("#gramzhunque").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].integrity_score) == "undefined"?'0':changeDataArr[i].integrity_score);
+			$("#yugan").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].score_lang_sense) == "undefined"?'0':changeDataArr[i].score_lang_sense);
+			$("#qingxi").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].score_voice_clear) == "undefined"?'0':changeDataArr[i].score_voice_clear);
+			
+			$("#score").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].score) == "undefined"?'0':changeDataArr[i].score);
+			$("#last_score").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].score) == "undefined"||typeof(changeDataArr[i].last_score) == "undefined"?'0':changeDataArr[i].score-changeDataArr[i].last_score);
+			$("#rank_num").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].rank_num) == "undefined"?'0':changeDataArr[i].rank_num);
+			$("#last_rank_num").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].rank_num) == "undefined"||typeof(changeDataArr[i].last_rank_num) == "undefined"?'0':changeDataArr[i].rank_num-changeDataArr[i].last_rank_num);
+			$("#likes_user_num").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].likes_user_num) == "undefined"?'0':changeDataArr[i].likes_user_num);
+			$("#likes_user_num_last").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].likes_user_num) == "undefined"||typeof(changeDataArr[i].likes_user_num_last) == "undefined"?'0':changeDataArr[i].likes_user_num-changeDataArr[i].likes_user_num_last);
+			$("#gross_score_basic").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].gross_score_basic) == "undefined"?'0':changeDataArr[i].rank_num);
+			$("#gross_score_basic_last").text(typeof(changeDataArr[i]) == "undefined"||typeof(changeDataArr[i].gross_score_basic) == "undefined"||typeof(changeDataArr[i].gross_score_basic_last) == "undefined"?'0':changeDataArr[i].gross_score_basic-changeDataArr[i].gross_score_basic_last);
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-朗读短句成绩</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/home-page.css">
+	<link rel="stylesheet" href="../../css/read-short-score.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking" >自我诊断</div>
+	<div class="home-statistical" style="border-top:1px solid #e6eaee;padding-top:1rem;">
+		<div class="class-rank">
+			<h1><span id="self-allscore">-</span></h1>
+			<p style="color:#1e96ee;">总得分</p>
+			<div class="poorly">
+				<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+				<span>分数较上次提高<span id="self-allscore-last">-</span>分</span>
+			</div>
+		</div>
+		<div class="score-statistics">
+			<h1><span id="self-readtime">-</span>分</h1>
+			<p style="color:#3ec328;">朗读时长</p>
+			<div class="poorly">
+				<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+				<span>朗读时长较上次提高<span id="self-readtime-last">-</span>秒</span>
+			</div>
+		</div>
+		<div class="won-praise">
+			<h1><span id="self-likenum">-</span></h1>
+			<p>获赞数</p>
+			<div class="poorly">
+				<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+				<span>获赞数较上次增加<span id="self-likenum-last">-</span>个</span>
+			</div>
+		</div>
+		<div class="basic">
+			<h1><span id="self-errornum">-</span></h1>
+			<p style="color:#fac63a;">读错字数</p>
+			<div class="poorly">
+				<i class="iconfont icon-xiajiang" style="color:#d35847;"></i>
+				<span>读错字数较上次减少<span id="self-errornum-last">-</span>个</span>
+			</div>
+		</div>
+	</div>
+	<div style="margin-left:0.5rem;overflow: hidden;">
+		<div class="oral-score fleft" style="width:48.4%;margin-top:1rem;">
+			<div class="oral-score-title">
+				<span class="left">口语评分</span>
+			</div>
+			<div class="oral-score-box">
+				<div class="left fleft"style="width:100%;border:none;">
+					<ul class="oral-score-detail">
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>流利程度</p>
+								<h3>84分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/01.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" style="background-color:#1d94ed;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>语法准确度</p>
+								<h3>84分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/01.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" style="background-color:#8e77e4;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>声音清晰度</p>
+								<h3>84分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/01.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" style="background-color:#3ec229;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>语法完整度</p>
+								<h3>84分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/01.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar"  style="background-color:#fac639;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>语感</p>
+								<h3>84分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/01.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar"  style="background-color:#4c6f97;"></span>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		<!-- 读错字 -->
+		<div class="fright read-typo">
+			 <div class="column">
+				<div class="oral-score-title" style="border:none;border-bottom: 1px solid #e6eaee;">
+					<span class="left">读错字</span>
+				</div>
+				 <ul class="read-typo-list" id='errorLi'>
+				 </ul>
+			 </div>
+			 <div class="column compared" style="border:none;text-align: left;" id="top3Li">
+				<!--<div class="compared-list">
+					<p>
+						<img src="../../images/01.png" alt="" >
+						<b>Tom</b>
+					</p>
+					<ul>
+						<li>
+							<b class="showdiv">87</b>
+							<span class="showdiv">总得分</span>
+						</li>
+						<li>
+							<b class="showdiv">8</b>
+							<span class="showdiv">读错字数</span>
+						</li>
+
+					</ul>
+				</div>
+				<div class="compared-list">
+					<p>
+						<img src="../../images/02.png" alt="" >
+						<b>Luily</b>
+					</p>
+					<ul>
+						<li>
+							<b class="showdiv">87</b>
+							<span class="showdiv">总得分</span>
+						</li>
+						<li>
+							<b class="showdiv">8</b>
+							<span class="showdiv">读错字数</span>
+						</li>
+					</ul>
+				</div>
+				<div class="compared-list">
+					<p>
+						<img src="../../images/03.png" alt="" >
+						<b>lily</b>
+					</p>
+					<ul>
+						<li>
+							<b class="showdiv">90</b>
+							<span class="showdiv">总得分</span>
+						</li>
+						<li>
+							<b class="showdiv">0</b>
+							<span class="showdiv">读错字数</span>
+						</li>
+					</ul>
+				</div>-->
+			 </div>
+		</div> 
+	</div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+<script>
+	setTimeout(function(){
+		$(".layout-nav-right a").eq(0).parent().addClass("active");
+	},200);
+	showPage();
+	function showPage(){
+			$.ajax({
+				type: 'GET',
+				url: server + 'stu/sentence/score?token='+token+'&batch='+batch,
+				dataType: "json",
+				success: function(back){
+					if(back.obj){
+						var selfinfo = back.obj.selfinfo;
+						$('#self-allscore').text(selfinfo.grossScoreSentence);
+						$('#self-readtime').text(selfinfo.readTimeSentence/60);
+						$('#self-likenum').text(selfinfo.likesUserNum);
+						$('#self-errornum').text(selfinfo.errorWordsSentence);
+						
+						$('#self-allscore-last').text(selfinfo.grossScoreSentence-selfinfo.grossScoreSentenceLast);
+						$('#self-readtime-last').text(selfinfo.readTimeSentence-selfinfo.readTimeSentenceLast);
+						$('#self-likenum-last').text(selfinfo.likesUserNum-selfinfo.likesUserNumLast);
+						$('#self-errornum-last').text(selfinfo.errorWordsSentence-selfinfo.errorWordsNumSentenceLast);
+						
+
+						if(selfinfo.error_words_sentence){
+							var errorWordsArr=selfinfo.error_words_sentence.split("|");
+							var errorLi = ''
+							for(var i=0; i<errorWordsArr.length; i++){
+								errorLi += '<li>'+errorWordsArr[i]+'</li>';
+							}
+							$("#errorLi").append($(errorLi));
+						}
+						
+						var top3Li = ''
+						debugger
+						for(i=0; i<back.obj.top3Maninfo.length; i++){
+							var top3user = back.obj.top3Maninfo[i];
+							top3Li += '<div class="compared-list">'+
+								'<p>'+
+									'<img src="'+top3user.userHeadImage+'" alt="" >'+
+									'<b>'+top3user.userName+'</b>'+
+								'</p>'+
+								'<ul>'+
+									'<li>'+
+										'<b class="showdiv">'+top3user.grossScoreSentence+'</b>'+
+										'<span class="showdiv">总得分</span>'+
+									'</li>'+
+									'<li>'+
+										'<b class="showdiv">'+top3user.errorWordsSentence+'</b>'+
+										'<span class="showdiv">读错字数</span>'+
+									'</li>'+
+								'</ul>'+
+							'</div>';
+						}
+						$("#top3Li").append($(top3Li));
+						
+						return;
+					}
+					alert(back.msg);
+				},
+				error: function(err){
+					alert('接口出错！')
+				}
+			});
+		}
+</script>
+</body>
+</html>

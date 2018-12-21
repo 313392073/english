@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-分享偶像</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/share-idol.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+	
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking">分享偶像</div>
+	<div class="choose-share-box">
+		<h2>分享主题：我心目中的职场达人</h2>
+		<h3>每人可投3票|当前排列顺序：上传时间</h3>
+		<div class="vote-for">
+			你选择投票给:
+			<span id="imgList">
+				<!--<img src="../../images/01.png" alt="">
+				<img src="../../images/02.png" alt="">
+				<img src="../../images/03.png" alt="">-->
+			</span>
+		</div>
+		<div class="to-choose-list">
+			<ul id="shareList">
+				<!--<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>
+				<li>
+					<div class="share-idol-item">
+						<img src="../../images/001.jpg" alt="" class="share-img">
+						<img src="../../images/01.png" alt="" class="share-user">
+					</div>
+					<p>Mathilda Campbell</p>
+					<h3 class="fright">32人点赞</h3>
+					<input type="checkbox"/>
+				</li>-->
+			</ul>
+		</div>
+		<button type="button" class="submit-questionnaire" onclick="submitVote();">提交投票</button>
+	</div>
+	</div>
+	<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+	<!-- 提交投票-->
+	<div id="page-model5" class="page-model">
+		<div class="page-model-box">
+			<span class="closed fright" onclick="closed();"><i class="iconfont icon-chahao"></i></span>
+			<img src="../../images/dialog4_03.png" alt="">
+			<h2>提交投票</h2>
+			<p>投票给你认可的作品</p>
+			<button class="confirm" onclick="subShare()">确定</button>
+		</div>
+	</div>
+	<script src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/landscape.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../js/student.js" ></script>
+	<script>
+		setTimeout(function(){
+			$(".layout-nav-right a").eq(2).parent().addClass("active");
+		},200);
+		var array=[];
+		getlist();
+		var ss=0;
+		/*$('.to-choose-list>ul').on('click','li',function(){*/
+		function check(obj){
+			var imgList=$('#imgList').find('img');
+			if($(obj).hasClass('active')){//已选中,则取消选中
+				$(obj).removeClass('active');
+				$(obj).find('input[type="checkbox"]').attr('checked',false);
+				var current=$(obj).find('.share-user').attr('src');
+				for(var i=0;i<imgList.length;i++){
+					console.log($(imgList[i]))
+					if(imgList[i].src==current){
+						$('#imgList').find($(imgList[i])).remove();
+						ss--;
+					}
+				}
+			}else{//没有选中
+				if(ss<3){ //投的数量不够
+					$(obj).addClass('active');
+					$(obj).find('input[type="checkbox"]').attr('checked',true);
+					var srcs=$(obj).find('.share-user').attr('src');
+					$('#imgList').append('<img src="'+srcs+'">');
+					ss++;
+				}else{//投的数量够了
+					return;
+				}
+			}
+		}
+		/*});*/
+		function submitVote(){
+			$('#page-model5').fadeIn(500);
+
+		}
+		function closed(){
+			$('#page-model5').fadeOut(500);
+		}
+		function subShare(){
+			var list=[];
+			var inputs=$('#shareList li').find('input[type="checkbox"]');
+			for(var i=0;i<inputs.length;i++){
+				if($(inputs[i]).is(':checked')){
+					list.push(inputs[i].value);
+				}
+			}
+			if(list.length<1){
+				alert('请先投票！')
+			}else{
+				$.ajax({
+					type: 'POST',
+					url: server + '/stu/idol/submit?token='+token,
+					data : JSON.stringify(list),
+					dataType : 'json',
+					contentType : 'application/json;charset=utf-8',
+					success:function(back){
+						 window.location.href="vote-ranking.html";
+					}
+				})
+			}
+		}
+		function getlist(){
+			$.ajax({
+				type: 'GET',
+				url: server + '/stu/idol/getOrder?token='+token,
+				dataType: "json",
+				success: function(back){
+					console.log(back)
+					if(back.obj){
+						var result=back.obj.idollist;
+						var already=back.obj.myidollist;
+
+						if(result.length>0){
+							for(var i=0;i<result.length;i++){
+								var contentStr = '<li onclick="check(this);">'+
+										'<div class="share-idol-item">'+
+										'<img src="'+result[i].upload_net_url+'" alt="" class="share-img">'+
+										'<img src="'+result[i].user_head_image+'" alt="" class="share-user">'+
+										'</div>'+
+										'<p>'+result[i].user_name+'</p>'+
+										'<h3 class="fright">'+result[i].likes_user_num+'人点赞</h3>'+
+										'<input type="checkbox" value="'+result[i].user_loginname+'"/>'+
+										'</li>';
+								$("#shareList").append(contentStr);
+							}
+						}
+						if(already.length>0){
+							var target=$("#shareList li").find('input[type="checkbox"]');
+							for(var i=0;i<target.length;i++){
+								for(var j=0;j<already.length;j++){
+									if(already[j].userLoginname==target[i].value){
+										$(target[i]).attr('checked',true);
+										$(target[i]).parent('li').addClass('active');
+										var srcs=$(target[i]).parent('li').find('.share-user').attr('src');
+										$('#imgList').append('<img src="'+srcs+'">');
+										$(target[i]).parent('li').removeAttr('onclick');
+										$(target[i]).parent('li').siblings().removeAttr('onclick');
+										$('.submit-questionnaire').removeAttr('onclick');
+										$('.submit-questionnaire').text('查看投票排行榜');
+										$('.submit-questionnaire').click(function(){
+											window.location.href="vote-ranking.html";
+										});
+									}
+								}
+							}
+						}
+					}
+				},
+				error: function(err){
+					alert('接口出错！')
+				}
+			});
+		}
+	</script>
+</body>
+</html>

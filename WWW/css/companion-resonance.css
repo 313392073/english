@@ -1,0 +1,280 @@
+@charset "utf-8";
+.left-group-list{
+	width:13rem;
+	border-right:1px solid #e6eaee;
+}
+.left-group-list .group-item{
+	line-height:3.5rem;
+	padding: 0 0.5rem;
+	border-bottom:1px solid #e6eaee;
+	box-sizing: border-box;
+	border-left: 5px solid #fff;
+}
+.left-group-list .active{
+	border-left:5px solid #1f96ef;
+}
+.left-group-list .group-item .group-name{
+	font-size:0.9rem;
+	padding-right:0.2rem;
+}
+.left-group-list .group-item>span>img{
+	width:1.6rem;
+	height:1.6rem;
+	vertical-align: middle;
+	border-radius: 50%;
+}
+.left-group-list .group-item .score{font-size:0.8rem;}
+.left-group-list .group-item>span>.fixwidth{
+	display: inline-block;
+	width:2rem;
+	text-align: right;
+}
+.eachGroup-details{
+	margin-left:13.5rem;
+}
+.summarize-box{
+	display: -webkit-flex; 
+	display: -moz-flex; 
+	display: -o-flex; 
+	display: -ms-flex; 
+	display: flex;
+}
+.summarize-box .col {
+  margin:0.5rem 0.2rem;
+}
+.summarize-box .fluid {
+  flex: 1;
+  text-align: center;
+}
+.summarize-box .fixed {
+  width:13rem;
+}
+.oral-score-box .left .oral-score-detail li .oral-text {
+    height: 2rem;
+    padding-top: 0.2rem;
+}
+.summarize-box .fluid{
+	border:1px solid #e6eaee;
+	border-radius: 3px;
+}
+.group-name h2{line-height:4rem;}
+.group-name img{
+	width:2rem;
+	height:2rem;
+	border:1px solid #d9dcd6;
+	border-radius: 50%;
+}
+.group-name .inlineBlock .showdiv{padding:0.5rem 0 0.8rem 0;}
+.group-name p{
+	border-top:1px solid #e6eaee;
+	line-height: 4rem;
+	font-size:1rem;
+}
+.read-typo-list li{
+	padding:0.4rem 0;
+}
+.dialog-box{
+	border:1px solid #e6eaee;
+	border-radius: 3px;
+	margin-left:13.7rem;
+	min-height: 2rem;
+}
+.dialog-box .check-detail{
+	color:#1f96ef;
+	position: relative;
+	right:0.8rem;
+	top:0.7rem;
+	}
+.dialog-box .dialog-box-list{padding:0.8rem 0.8rem 0;}
+.dialog-box .dialog-box-list li{
+	display: flex;
+	margin-bottom:0.8rem;
+	}
+.dialog-box .dialog-box-list li>img{
+	width:1.8rem;
+	height:1.8rem;
+	padding-right:0.5rem;
+}
+.dialog-box .dialog-box-list li>div{
+	flex:1;
+}
+#groupPeople{
+	display: flex;
+	width:80%;
+	margin:0 auto;
+	height:6rem;
+}
+#groupPeople>div:first-child{
+	width:50%;
+	text-align: center;
+	align-self: center;
+}
+#groupPeople>div:nth-child(2){
+	flex:1;
+	text-align: center;
+	align-self: center;
+}
+#groupPeople>div img{
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+}
+#groupPeople .score{
+	text-align: left;
+	line-height: 1.5rem;
+	color:#1b92ec;
+	font-size:0.7rem;
+}
+.color{
+	color:#7F8FA4;
+}
+/* 详情页 */
+.scores-ranking i.iconfont{font-size:1rem;}
+.voice-dialogue-box{
+		margin:0 2rem;
+		padding: 0.8rem 0.8rem 0;
+		border: 1px solid #e6eaee;
+    border-radius: 3px;
+		position: relative;
+		overflow: hidden;
+		padding-bottom: 3rem;
+}
+.voice-dialogue-box .student{
+		display: flex;
+	  margin-bottom: 0.8rem;
+		width: 70%;
+}
+.voice-dialogue-box .teacher{
+		float: right;
+    text-align: right;
+    margin-bottom: 0.8rem;
+    width: 70%;
+}
+.voice-dialogue-box .teacher img{
+	position: absolute;
+	right:0.8rem;
+}
+.voice-dialogue-box .student img,.voice-dialogue-box .teacher img{
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.voice-dialogue-box .teacher>div{
+	margin-right: 2rem;
+}
+.voice-dialogue-box .student>div{
+	flex:1;
+	margin-left:0.2rem;
+}
+.yuyin{
+		width:13rem;
+		height:1.6rem;
+		padding:0.1rem 0.3rem;
+		border-radius: 0.8rem;
+		box-sizing: border-box;
+		background-color: #e6eaee;
+		margin:0.2rem 0;
+		display: inline-block;
+}
+.voice-dialogue-box .teacher .yuyin{ float: right;}
+i.voice{
+	color:#b1bcca;
+	font-size:1rem;
+	line-height: 1.6rem;
+}
+.voice-dialogue-box .time{
+	display: inline-block;
+	line-height: 1.8rem;
+	padding-left:0.2rem;
+	
+}
+.voice-dialogue-box .teacher .time{padding-right:0.2rem;color:#0c77f8;}
+.voice-box{
+	width:60%;
+	position: relative;
+	color:#a3aab3;
+	top: -2.5rem;
+  left: 20%;
+}
+.voice-box .xiaolian{
+	position: absolute;
+	left: 0.3rem;
+	top: 0.4rem;
+}
+.voice-box .icon-luyin{
+	position: absolute;
+	color:#0c77f8;
+	right: 0;
+  font-size: 1.5rem;
+}
+.voice-box input{
+	width:100%;
+	height:1.6rem;
+	line-height:1.6rem;
+	border-radius:0.8rem ;
+	border:1px solid #ddd;
+	box-shadow: 0px 0px 2px #e6eaee;
+	padding:0 1.5rem;
+	box-sizing: border-box;
+	outline:none;
+}
+.student-companion-process .process{
+	width: 10rem;
+	height: 0.4rem;
+	background-color: #dfe4ee;
+	border-radius: 0.2rem;
+	position: relative;
+}
+.student-companion-process .process-bar{
+		position: absolute;
+		left:0;
+		width: 92%;
+    height: 0.4rem;
+    background-color: #0c77f8;
+    border-radius: 0.2rem;
+		
+}
+.voice-icon{
+	text-align: center;
+	margin-bottom:0.8rem;
+}
+.voice-icon .icon-luyin1{
+	padding:1rem;
+	font-size:2.3rem;
+	color:#0c77f8;
+}
+.import-sentence-list{
+	width:99%;
+	margin:0.3rem  auto 1rem;
+}
+.import-sentence-list .student{
+	border:1px solid #ddd;
+	box-shadow: 2px 2px 2px #eee;
+}
+.import-sentence-list .student{
+	display: flex;
+	padding:0.5rem;
+	margin-bottom: 0.5rem;
+}
+.import-sentence-list .student img{
+	width:1.8rem;
+	height:1.8rem;
+	padding-right:0.5rem;
+	}
+.import-sentence-list .student>div{flex:1;}
+.import-sentence-list .student>div.student-companion-process{
+	text-align: center;
+	align-self: center;
+}
+.import-sentence-list .student .student-companion-process .process{width:7rem;}
+.already {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	background: url(../images/Waves.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}

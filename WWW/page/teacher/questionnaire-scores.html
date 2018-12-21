@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>教师端-分析问卷得分</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/landscape.css">
+    <link rel="stylesheet" href="../../css/home-page.css">
+    <link rel="stylesheet" href="../../css/selfDiagnosis.css"/>
+    <link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content" style="height:100%;overflow-y: scroll;">
+    <p class="scores-ranking">分析问卷</p>
+    <div style="border-top: 1px solid #ddd;">
+        <section class="self-diagnosis--container">
+            <!--得分区域-->
+            <div class="scoring--container">
+                <div class="scoring-left--container">
+                    <p class="self-score-title">朗读短句练习<span id="landle">100%</span></p>
+                    <p class="self-use-time"><span id="studentNum"></span>人已填写完成问卷，平均用时<span id="avgTime"></span></p>
+                </div>
+                <div class="scoring-right--container">
+                    <ul id="wholeScore">
+                        <!--<li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li class="green"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>-->
+                    </ul>
+                    <p class="score-number">80分</p>
+                    <p class="score-title">平均分</p>
+                </div>
+                <div style="clear: both"></div>
+                <!--头像列表-->
+                <div class="scoring-img--container">
+                    <ul id="photoList">
+                        <!--<li>
+                            <img src="../../images/user.png" alt="">
+                        </li>
+                        -->
+                    </ul>
+                </div>
+            </div>
+            <!--排名区域-->
+            <div class="ranking--container">
+                <ul id="student-rank">
+                    <!--<li>
+                         <div class="left-img-container">
+                             <img src="../../images/user.png" alt="">
+                         </div>
+                         <div class="right-score&#45;&#45;container">
+                             <div class="top-left">
+                                 <p>Elva Martinez</p>
+                                 <p>Division Leader</p>
+                             </div>
+                             <div class="top-right">
+                                 <p>
+                                     <i class="iconfont icon-yanjing"></i>
+                                     View Report<span>81分</span></p>
+                             </div>
+                             <div style="clear: both"></div>
+                             <div class="bottom">
+                                 <ul>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li class="green"></li>
+                                     <li></li>
+                                     <li></li>
+                                     <li></li>
+                                     <li></li>
+                                     <li></li>
+                                     <li></li>
+                                     <li></li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </li>
+
+                     -->
+
+                </ul>
+            </div>
+            <div class="score-legend">
+                <span><b class="good"></b>优秀</span>
+                <span><b class="well"></b>良好</span>
+                <span><b class="unqualified"></b>不合格</span>
+            </div>
+
+        </section>
+    </div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/teacher.js"></script>
+<script>
+    var excellent=80,well=60,b=5;
+    showScore();
+    function showScore(){
+        $.ajax({
+            type: 'GET',
+            url: server + '/tea/questionnaire/score?token='+token+'&batch='+batch,
+            dataType: "json",
+            success: function (back) {
+                console.log(back);
+                if(back.obj){
+                    $('#studentNum').text(back.obj.handledUserCount);
+                    $('#landle').text(Math.round(back.obj.handledUserCount / back.obj.ClassUserCount * 10000) / 100.00 + "%")
+                    $('#avgTime').text(s_to_hs(back.obj.avgTime));
+
+                    $('.score-number').text(back.obj.avgScore+'分');
+                    var lis='';
+
+                    if(back.obj.avgScore<=100&&back.obj.avgScore>excellent){
+                        var a=parseInt(parseInt(back.obj.avgScore)-parseInt(excellent));
+                        var intger=parseInt(a/b);
+                        if(intger==1){
+                            for(var j=0;j<20;j++){
+                                if(j<17){
+                                    lis+='<li class="green"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==2){
+                            for(var j=0;j<20;j++){
+                                if(j<18){
+                                    lis+='<li class="green"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==3){
+                            for(var j=0;j<20;j++){
+                                if(j<19){
+                                    lis+='<li class="green"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==4){
+                            for(var j=0;j<20;j++){
+                                lis+='<li class="green"></li>';
+                            }
+                        }
+                    }else if(back.obj.avgScore<=excellent&&back.obj.avgScore>well){
+                        var a=parseInt(parseInt(back.obj.avgScore)-parseInt(well));
+                        var intger=parseInt(a/b);
+                        if(intger==1){
+                            for(var j=0;j<20;j++){
+                                if(j<13){
+                                    lis+='<li class="orange"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==2){
+                            for(var j=0;j<20;j++){
+                                if(j<14){
+                                    lis+='<li class="orange"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==3){
+                            for(var j=0;j<20;j++){
+                                if(j<15){
+                                    lis+='<li class="orange"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==4){
+                            for(var j=0;j<20;j++){
+                                if(j<16){
+                                    lis+='<li class="orange"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }
+                    }else if(back.obj.avgScore<=well) {
+                        var a=parseInt(back.obj.avgScore);
+                        var intger=parseInt(a/b);
+                        if(intger==12){
+                            for(var j=0;j<20;j++){
+                                if(j<12){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==11){
+                            for(var j=0;j<20;j++){
+                                if(j<11){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==10){
+                            for(var j=0;j<20;j++){
+                                if(j<10){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==9){
+                            for(var j=0;j<20;j++){
+                                if(j<9){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==8){
+                            for(var j=0;j<20;j++){
+                                if(j<8){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==7){
+                            for(var j=0;j<20;j++){
+                                if(j<7){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==6){
+                            for(var j=0;j<20;j++){
+                                if(j<6){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==5){
+                            for(var j=0;j<20;j++){
+                                if(j<5){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==4){
+                            for(var j=0;j<20;j++){
+                                if(j<4){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==3){
+                            for(var j=0;j<20;j++){
+                                if(j<3){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==2){
+                            for(var j=0;j<20;j++){
+                                if(j<2){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else if(intger==1){
+                            for(var j=0;j<20;j++){
+                                if(j<1){
+                                    lis+='<li class="red"></li>';
+                                }else{
+                                    lis+='<li></li>';
+                                }
+                            }
+                        }else{
+                            for(var j=0;j<20;j++){
+                                lis+='<li></li>';
+                            }
+                        }
+                    }
+
+
+                    $('#wholeScore').append(lis);
+
+                    var result=back.obj.handledUser;
+
+                    if(result.length>0){
+                        var html='',str='';
+                        for(var i=0;i<result.length;i++){
+                            str='';
+                            str+='<li>';
+                            str+='<div class="left-img-container">';
+                            str+='<img src="'+result[i].userHeadImage+'" alt="">';
+                            str+='</div>';
+                            str+='<div class="right-score-container">';
+                            str+=' <div class="top-left">';
+                            str+='<p>'+result[i].userName+'</p>';
+                            str+='<p>'+result[i].userNote+'</p>';
+                            str+='</div>';
+                            str+='<div class="top-right">';
+                            str+= '<p>';
+                            str+= '<i class="iconfont icon-yanjing"></i>View Report';
+                            if(result[i].grossScoreQuestionnaire>excellent){
+                                str+='<span style="color:#38b923;">'+result[i].grossScoreQuestionnaire+'分</span></p>';
+                            }else if(result[i].grossScoreQuestionnaire<=excellent&&result[i].grossScoreQuestionnaire>well){
+                                str+='<span style="color:#ff7800;">'+result[i].grossScoreQuestionnaire+'分</span></p>';
+                            }else{
+                                str+='<span style="color:#d54642;">'+result[i].grossScoreQuestionnaire+'分</span></p>';
+                            }
+                            /*str+='<span>'+result[i].grossScoreQuestionnaire+'分</span></p>';*/
+                            str+='</div>';
+                            str+='<div style="clear: both"></div>';
+                            str+='<div class="bottom">';
+                            str+='<ul class="liparent'+i+'">';
+                            str+='</ul>';
+                            str+='</div>';
+                            str+='</div>';
+                            str+='</li>';
+                            var param='<li><img src="'+result[i].userHeadImage+'" alt=""></li>';
+                            $('#photoList').append(param);
+                            if(result[i].grossScoreQuestionnaire<=100&&result[i].grossScoreQuestionnaire>excellent){
+                                var a=parseInt(parseInt(result[i].grossScoreQuestionnaire)-parseInt(excellent));
+                                var intger=parseInt(a/b);
+                                html='';
+                                if(intger==1){
+                                    for(var j=0;j<20;j++){
+                                        if(j<17){
+                                            html+='<li class="green"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==2){
+                                    for(var j=0;j<20;j++){
+                                        if(j<18){
+                                            html+='<li class="green"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==3){
+                                    for(var j=0;j<20;j++){
+                                        if(j<19){
+                                            html+='<li class="green"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==4){
+                                    for(var j=0;j<20;j++){
+                                        html+='<li class="green"></li>';
+                                    }
+                                }
+                            }else if(result[i].grossScoreQuestionnaire<=excellent&&result[i].grossScoreQuestionnaire>well){
+                                var a=parseInt(parseInt(result[i].grossScoreQuestionnaire)-parseInt(well));
+                                var intger=parseInt(a/b);
+                                html='';
+                                if(intger==1){
+                                    for(var j=0;j<20;j++){
+                                        if(j<13){
+                                            html+='<li class="orange"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==2){
+                                    for(var j=0;j<20;j++){
+                                        if(j<14){
+                                            html+='<li class="orange"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==3){
+                                    for(var j=0;j<20;j++){
+                                        if(j<15){
+                                            html+='<li class="orange"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==4){
+                                    for(var j=0;j<20;j++){
+                                        if(j<16){
+                                            html+='<li class="orange"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }
+                            }else if(result[i].grossScoreQuestionnaire<=well) {
+                                var a=parseInt(result[i].grossScoreQuestionnaire);
+                                var intger=parseInt(a/b);
+                                html='';
+                                if(intger==12){
+                                    for(var j=0;j<20;j++){
+                                        if(j<12){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==11){
+                                    for(var j=0;j<20;j++){
+                                        if(j<11){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==10){
+                                    for(var j=0;j<20;j++){
+                                        if(j<10){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==9){
+                                    for(var j=0;j<20;j++){
+                                        if(j<9){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==8){
+                                    for(var j=0;j<20;j++){
+                                        if(j<8){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==7){
+                                    for(var j=0;j<20;j++){
+                                        if(j<7){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==6){
+                                    for(var j=0;j<20;j++){
+                                        if(j<6){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==5){
+                                    for(var j=0;j<20;j++){
+                                        if(j<5){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==4){
+                                    for(var j=0;j<20;j++){
+                                        if(j<4){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==3){
+                                    for(var j=0;j<20;j++){
+                                        if(j<3){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==2){
+                                    for(var j=0;j<20;j++){
+                                        if(j<2){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else if(intger==1){
+                                    for(var j=0;j<20;j++){
+                                        if(j<1){
+                                            html+='<li class="red"></li>';
+                                        }else{
+                                            html+='<li></li>';
+                                        }
+                                    }
+                                }else{
+                                    for(var j=0;j<20;j++){
+                                        html+='<li></li>';
+                                    }
+                                }
+                            }
+                            $('#student-rank').append(str);
+                            $('.liparent'+i).html(lis);
+                        }
+
+                    }
+                }
+            }
+        })
+    }
+    function s_to_hs(s){
+        var h;
+        h  =   Math.floor(s/60);
+        s  =   s%60;
+        h    +=    '';
+        s    +=    '';
+        return h+'分钟'+s+'秒';
+    }
+</script>
+</body>
+</html>

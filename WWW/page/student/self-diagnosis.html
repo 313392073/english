@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>学生端-自我诊断</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/landscape.css">
+	<link rel="stylesheet" href="../../css/home-page.css">
+	
+	<link rel="stylesheet" href="../../css/self-diagnosis.css">
+	<link rel="stylesheet" href="../../font/iconfont.css">
+	
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+	<div class="scores-ranking" style="border-bottom:1px solid #e6eaee;">自我诊断</div>
+	<div style="position:relative;height:10rem;" id="timuList">
+	</div>
+	
+	<!-- 底部的左右两栏 -->
+	<div class="self-dia-detail">
+		<div class="oral-score fleft" style="width:50%;">
+			<div class="oral-score-title">
+				<span class="left">口语评分</span>
+			</div>
+			<div class="oral-score-box">
+				<div class="left fleft"style="width:100%;border:none;">
+					<ul class="oral-score-detail">
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>流利程度</p>
+								<h3 id="fluency_score">-分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/img1.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" id="fluency_score _s" style="background-color:#1d94ed;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>语法准确度</p>
+								<h3 id="accuracy_score">-分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/img3.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" id="accuracy_score_s" style="background-color:#8e77e4;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>声音清晰度</p>
+								<h3 id="standard_score">-分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/img4.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar"  id="standard_score_s" style="background-color:#3ec229;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>语法完整度</p>
+								<h3  id="integrity_score">-分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/img5.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar"  id="integrity_score_s" style="background-color:#fac639;"></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="oral-text inlineBlock">
+								<p>语感</p>
+								<h3 id="total_score">-分</h3>
+							</div>
+							<div class="oral-proess inlineBlock">
+								<span class="img-shadow"><img src="../../images/img2.png" alt=""></span>
+								<span class="progress-back">
+									<span class="progress-bar" id="total_score_s" style="background-color:#4c6f97;"></span>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="home-statistical">
+			<div class="column" style="margin-bottom: 1.2rem;">
+				<div class="class-rank">
+					<h1>86</h1>
+					<p style="color:#1e96ee;">总得分</p>
+					<div class="poorly">
+						<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+						<span>分数较上次提高15分</span>
+					</div>
+				</div>
+				<div class="score-statistics">
+					<h1>12</h1>
+					<p style="color:#3ec328;">读错字数</p>
+					<div class="poorly">
+						<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+						<span>读错字数较上次减少12个</span>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="won-praise">
+					<h1>35秒</h1>
+					<p>朗读时长</p>
+					<div class="poorly">
+						<i class="iconfont icon-shangsheng" style="color:#1bb934;"></i>
+						<span>朗读时长较上次提高12秒</span>
+					</div>
+				</div>
+				<div class="basic">
+					<h1>97</h1>
+					<p style="color:#fac63a;">获赞数</p>
+					<div class="poorly">
+						<i class="iconfont icon-xiajiang" style="color:#d35847;"></i>
+						<span>获赞数较上次下降12分</span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<div id="page-model6" class="page-model">
+	<div class="page-model-box">
+		<span class="closed fright" onclick="closed();"><i class="iconfont icon-chahao"></i></span>
+		<img src="../../images/dialog5_03.png" alt="">
+		<h2>提交自我诊断</h2>
+		<p>已做完所有自我诊断的题目</p>
+		<button class="confirm" onclick="submits()">确定</button>
+	</div>
+</div>
+<div id="record" class="rp" >
+    <div style="width:100%;height:10%;"></div>
+    <div class="rprogress">
+        <div class="rschedule"></div>
+    </div>
+    <br/>
+    <div id="rtime" class="rtime">00:00:00</div><br/>
+    <div class="stop" onclick="stopRecord()">停止</div>
+</div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+<script>
+	getList(); 
+	var users=JSON.parse(localStorage.getItem('user'));
+	var user=users.userLoginname;
+	function subSelf(){
+		$('#page-model6').fadeIn(500);
+	}
+	function closed(){
+		$('#page-model6').fadeOut(500);
+	}
+	function submits(){
+		window.location.href="read-short-score.html"
+	}
+	function getList(){
+		$.ajax({
+			type: 'GET',
+			url: server +'stu/self_test/get?token=' + token + '&batch=' + batch,
+			dataType: "json",
+			success: function (back) {
+				console.log(JSON.stringify(back))
+				var result=back.obj;
+				if(result){
+					for(var i=0;i<result.length;i++){
+						var html='';
+						if(result[i].if_handle!= 0){//未答题 
+							html+='<div class="self-dia-box">';
+							html+='<h3>请朗读以下文字<span class="fright">'+(i+1)+'<span>	/'+result.length+'</span></span></h3>';
+							html+='<p>'+result[i].course_item+'</p>';
+							html+='<div class="record-box">';
+							html+='<i class="iconfont icon-luyin1"></i>';
+							html+='<span class="inlineBlock recoid-item">';
+							html+='<span style="display: inline-block;width: 100%;" onclick="startRecord(this)">点击开始录音</span>';
+							html+='<span class="already" style="display: inline-block;width: 100%;display:none;"></span>';
+							html+='</span>';
+							html+='<b class="score"></b>';
+							html+='<span class="sumitBtn fright" onclick="subSelf(this);">提交</span>';
+							html+='</div>';
+							html+='<input type="hidden" value="'+result[i].course_item_id+'"/>';
+							html+='</div>';
+						}else{
+							var url=result[i].voice_path;
+							html+='<div class="self-dia-box">';
+							html+='<h3>请朗读以下文字<span class="fright">'+(i+1)+'<span>	/'+result.length+'</span></span></h3>';
+							html+='<p>'+result[i].course_item+'</p>';
+							html+='<div class="record-box">';
+							html+='<i class="iconfont icon-luyin1"></i>';
+							html+='<span class="inlineBlock recoid-item">';
+							html+='<span class="already" style="display: inline-block;width: 100%;" onclick=startPlay("' + url + '")></span>';
+							html+='</span>';
+							html+='<b class="score"></b>';
+							html+='</div>';
+							html+='<input type="hidden" value="'+result[i].course_item_id+'"/>';
+							html+='</div>';
+						}
+						$('#timuList').append(html);
+					}
+				}
+			}
+		})
+	}
+	
+	var array=[];
+	//提交
+	function subSelf(obj){
+		var next=$(obj).parents('.self-dia-box').next().html();
+		$.ajax({
+			type: 'post',
+			url: server + '/stu/self_test/submit?token=' + token,
+			dataType: "json",
+			data:JSON.stringify(array),
+			contentType: 'application/json',
+			success: function (back) {
+				console.log(JSON.stringify(back))
+				if(typeof(next)!=="undefined"){
+					$(obj).parents('.self-dia-box').hide();
+					$(obj).parents('.self-dia-box').next().show();
+				}
+			}
+		}) 
+	}
+	var gentry = null,
+				hl = null,
+				le = null;
+			var er = null,
+				ep = null;
+			var bUpdated = false; //用于兼容可能提前注入导致DOM未解析完更新的问题
+			// H5 plus事件处理
+			function plusReady() {
+				// 获取音频目录对象
+				plus.io.resolveLocalFileSystemURL('_doc/', function(entry) {
+					entry.getDirectory('audio', {
+						create: true
+					}, function(dir) {
+						gentry = dir;
+						/* updateHistory(); */
+					}, function(e) {
+						outLine('Get directory "audio" failed: ' + e.message);
+					});
+				}, function(e) {
+					outLine('Resolve "_doc/" failed: ' + e.message);
+				});
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		
+			// DOMContentLoaded事件处理
+			document.addEventListener('DOMContentLoaded', function() {
+				// 获取DOM元素对象
+				er = document.getElementById('record');
+				rt = document.getElementById('rtime');
+				pt = document.getElementById('ptime');
+				pp = document.getElementById('progress');
+				/* updateHistory(); */
+			}, false);
+			
+			
+			function createItem(entry,parent,bofang) {
+				bofang.setAttribute('onclick', 'playAudio(this)');
+				bofang.entry = entry;
+				updateInformation(bofang);
+			}
+			// 开始录音
+			var r = null,
+				t = 0,
+				ri = null,
+				rt = null;
+			
+			function startRecord(obj) {
+				r = plus.audio.getRecorder();
+				if(r == null) {
+					outLine('录音对象未获取');
+					return;
+				}
+				r.record({
+					filename: '_doc/audio/'
+				}, function(p) {
+					outLine('录音完成：' + p);
+					plus.io.resolveLocalFileSystemURL(p, function(entry) {
+						
+						var parent=obj.parentNode;
+						obj.style.display="none";
+						var bofang=obj.nextSibling;
+						bofang.style.display="inline-block";
+						var ids=parseInt($(obj).parents('.self-dia-box').find('input[type="hidden"]').val());
+						createItem(entry,parent,bofang);
+						updateInformation(bofang);
+						addVoice(p,entry,bofang,ids);
+					}, function(e) {
+						outLine('读取录音文件错误：' + e.message);
+					});
+		
+				}, function(e) {
+					outLine('录音失败：' + e.message);
+				});
+				er.style.display = 'block';
+				t = 0;
+				ri = setInterval(function() {
+					t++;
+					rt.innerText = timeToStr(t);
+				}, 1000);
+			} // 停止录音
+			function stopRecord() {
+				er.style.display = 'none';
+				rt.innerText = '00:00:00';
+				clearInterval(ri);
+				ri = null;
+				r.stop();
+				w = null;
+				r = null;
+				t = 0;
+			}
+			// 获取录音历史列表
+			/* function updateHistory() {
+				if(bUpdated || !gentry || !document.body) { //兼容可能提前注入导致DOM未解析完更新的问题
+					return;
+				}
+				var reader = gentry.createReader();
+				reader.readEntries(function(entries) {
+					for(var i in entries) {
+						if(entries[i].isFile) {
+							createItem(entries[i]);
+						}
+					}
+				}, function(e) {
+					outLine('读取录音列表失败：' + e.message);
+				});
+				bUpdated = true;
+			} */
+		// 获取录音文件信息
+		function updateInformation(li){
+			if(!li || !li.entry){
+				return;
+			}
+			var entry = li.entry;
+			entry.getMetadata(function(metadata){
+				/* li.querySelector('.ainf').innerText = dateToStr(metadata.modificationTime); */
+			}, function(e){
+				outLine('获取文件"'+entry.name+'"信息失败：'+e.message);
+			} );
+		}
+		// 播放音频文件
+		function playAudio(li){
+			if(!li || !li.entry){
+				/* ouSet('无效的音频文件'); */
+				return;
+			}
+			/* outSet('播放音频文件：'+li.entry.name); */
+			startPlay('_doc/audio/'+li.entry.name);
+		}
+			function outLine(msg) {
+				$('#output').text(msg);
+			}
+		
+			timeToStr = function(ts) {
+				if(isNaN(ts)) {
+					return "--:--:--";
+				}
+				var h = parseInt(ts / 3600);
+				var m = parseInt((ts % 3600) / 60);
+				var s = parseInt(ts % 60);
+				return(ultZeroize(h) + ":" + ultZeroize(m) + ":" + ultZeroize(s));
+			};
+		
+			ultZeroize = function(v, l) {
+				var z = "";
+				l = l || 2;
+				v = String(v);
+				for(var i = 0; i < l - v.length; i++) {
+					z += "0";
+				}
+				return z + v;
+			};
+		
+			function addVoice(path,entry,bofang,ids) {
+				/* console.log("entry = " + entry.name)
+				console.log("上传前的文件名：" + entry.name); */
+				var sss=entry.name;
+				uploadVoice(path,sss,bofang,ids);
+			}
+		var totalTime=0;
+		
+			function uploadVoice(path,sss,bofang,ids) {
+				console.log(ids)
+				var uploadUrl = "http://116.255.173.207/v1/api/comm/upload?token="+token+'&batch='+batch+'&fileType='+4+'&file='+sss+'&courseItemId='+ids;
+				var task = plus.uploader.createUpload(uploadUrl, {
+						method: "post"
+					},
+					function (t,status) {
+	
+						// 上传完成
+						if (status == 200 ) { 
+							var data =JSON.parse(t.responseText);//返回的数据
+							console.log(JSON.stringify(data))
+							var msg=data.msg;
+							var voicePath = msg.match(/解析成功:(\S*)/)[1];
+							var param=data.obj.data.read_chapter.rec_paper.read_chapter;
+							var fluency_score=parseFloat(param.fluency_score);//流利程度
+							var integrity_score=parseFloat(param.integrity_score);//语法完整度
+							var standard_score=parseFloat(param.standard_score);//声音清晰度
+							var accuracy_score=parseFloat(param.accuracy_score);//语法精准度
+							var total_score=parseFloat(param.total_score);//语感
+							
+							everyObject={};
+							everyObject.fluencyScore=fluency_score;//流利程度
+							everyObject.integrityScore=integrity_score;//完整度
+							everyObject.accuracyScore=accuracy_score;//语法准确度
+							everyObject.scoreVoiceClear=standard_score;//声音清晰度
+							everyObject.scoreLangSense=total_score;//语感
+							everyObject.classBatch=batch;
+							everyObject.voicePath=voicePath;
+							everyObject.userLoginname=user;
+							everyObject.courseItemId=ids;
+	
+							array=[];
+							var everyList=JSON.stringify(everyObject);
+							array.push(everyObject);
+							console.log(JSON.stringify(array))
+							var score=parseInt(param.total_score);
+							bofang.parentNode.nextSibling.style.display="inline-block";
+							bofang.parentNode.nextSibling.innerHTML=score+'分';
+							$('#fluency_score').text(parseInt(fluency_score)+'分');
+							$('#fluency_score_s').css('width',parseInt(fluency_score)+'%');
+							$('#integrity_score').text(parseInt(integrity_score)+'分');
+							$('#integrity_score_s').css('width',parseInt(integrity_score)+'%');
+							$('#standard_score').text(parseInt(standard_score)+'分');
+							$('#standard_score_s').css('width',parseInt(standard_score)+'%');
+							$('#accuracy_score').text(parseInt(accuracy_score)+'分');
+							$('#accuracy_score_s').css('width',parseInt(accuracy_score)+'%');
+							$('#total_score').text(parseInt(total_score)+'分');
+							$('#total_score_s').css('width',parseInt(total_score)+'%');
+							//获取 时长
+							var p = plus.audio.createPlayer('_doc/audio/'+bofang.entry.name);
+							var onlyTime=p.getDuration();
+							totalTime=parseInt(totalTime)+parseInt(onlyTime);
+							console.log(totalTime)
+						} else {
+							outLine("上传失败：" + status);
+							//wt.close();
+						}
+					}
+				);
+				task.addData("client", "HelloH5+");
+				task.addData("uid", getUid());
+				/*for(var i = 0; i < files.length; i++) {
+					var f = files[i];
+	
+					task.addFile(f.path, {
+						key: f.name
+					});
+				}*/
+				task.addFile(path, {
+					key: "file"
+				})
+				task.start();
+			}
+		
+			// 产生一个随机数
+			function getUid() {
+				return Math.floor(Math.random() * 100000000 + 10000000).toString();
+			}
+		
+			// 播放文件相关对象
+			var p = null,
+				pt = null,
+				pp = null,
+				ps = null,
+				pi = null;
+		
+			function startPlay(url) {
+				//ep.style.display = 'block';
+				//var L = pp.clientWidth;
+				p = plus.audio.createPlayer(url);
+				
+				p.play(function() {
+					
+					outLine('播放完成！');
+					// 播放完成
+					/*pt.innerText = timeToStr(d) + '/' + timeToStr(d);
+					ps.style.webkitTransition = 'all 0.3s linear';
+					ps.style.width = L + 'px';
+					stopPlay();*/
+				}, function(e) {
+					
+					outLine('播放音频文件"' + url + '"失败：' + e.message);
+				});
+				// 获取总时长
+				/*var d = p.getDuration();
+				if(!d) {
+					pt.innerText = '00:00:00/' + timeToStr(d);
+				}*/
+				/*pi = setInterval(function() {
+					if(!d) { // 兼容无法及时获取总时长的情况
+						d = p.getDuration();
+					}
+					var c = p.getPosition();
+					if(!c) { // 兼容无法及时获取当前播放位置的情况
+						return;
+					}
+					pt.innerText = timeToStr(c) + '/' + timeToStr(d);
+					var pct = Math.round(L * c / d);
+					if(pct < 8) {
+						pct = 8;
+					}
+					ps.style.width = pct + 'px';
+				}, 1000);*/
+			}
+		
+			// 停止播放
+			function stopPlay() {
+				clearInterval(pi);
+				pi = null;
+				setTimeout(resetPlay, 500);
+				// 操作播放对象
+				if(p) {
+					p.stop();
+					p = null;
+				}
+			}
+		
+			// 重置播放页面内容
+			function resetPlay() {
+				ep.style.display = 'none';
+				ps.style.width = '8px';
+				ps.style.webkitTransition = 'all 1s linear';
+				pt.innerText = '00:00:00/00:00:00';
+			}
+</script>
+</body>
+</html>

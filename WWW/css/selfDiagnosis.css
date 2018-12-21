@@ -1,0 +1,405 @@
+.share-title {
+    font-size: 1.2rem;
+    color: rgba(53, 64, 82, 1);
+    padding-left: 1.6rem;
+    line-height: 4rem;
+    border-bottom: 1px solid #E6EAEE;
+}
+
+/*容器*/
+.self-diagnosis--container {
+    width: 90%;
+    margin: 1rem auto;
+}
+
+/*得分区域*/
+.scoring--container {
+    width: 100%;
+    height: 3.5rem;
+    background: #FFFFFF;
+    border: 1px solid #E6EAEE;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
+    border-radius: 4px;
+}
+
+.scoring-left--container {
+    width: 46%;
+    height: 60%;
+    float: left;
+    /*background-color: pink;*/
+}
+
+.scoring-right--container {
+    width: 54%;
+    height: 60%;
+    float: right;
+}
+
+.self-score-title {
+    font-size: 0.6rem;
+    color: rgba(53, 64, 82, 1);
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.self-score-title span {
+    color: rgba(41, 152, 23, 1);
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    font-size: 0.7rem;
+    border-left: 1px solid rgba(231, 233, 237, 1);
+}
+
+.self-use-time {
+    font-size: 0.4rem;
+    color: rgba(127, 143, 164, 1);
+    padding-top: 0.25rem;
+    padding-left: 0.5rem;
+}
+
+.scoring-right--container ul {
+    margin-top: 0.75rem;
+    margin-left: 1rem;
+    width: 75%;
+    float: left;
+}
+
+.scoring-right--container ul:after {
+    display: block;
+    content: "clear";
+    clear: both;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.scoring-right--container ul li {
+    float: left;
+    width: 0.5rem;
+    height: 1.25rem;
+    margin-left: 0.1rem;
+    background-color: rgba(226, 231, 238, 1);
+}
+
+.scoring-right--container ul li:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.scoring-right--container ul li:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.scoring-right--container .score-number {
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    color: rgba(41, 152, 23, 1);
+    padding-left: 82%;
+}
+
+.scoring-right--container .score-title {
+    font-size: 0.6rem;
+    color: rgba(127, 143, 164, 1);
+    padding-left: 81%;
+}
+
+/*颜色*/
+.green {
+    background-color: rgba(56, 186, 36, 1) !important;
+}
+
+.orange {
+    background-color:#ff7800 !important;
+}
+
+.red {
+    background-color:#d54642 !important;
+}
+.top-left p {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*头像列表*/
+.scoring-img--container {
+    width: 95%;
+    height: 1.5rem;
+    margin: 1rem auto auto auto;
+}
+
+.scoring-img--container li {
+    float: left;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
+}
+
+.scoring-img--container li img {
+    width: 100%;
+    height: 100%;
+}
+
+/*排名区域*/
+.ranking--container {
+    width: 100%;
+    margin-top: 1.1rem;
+}
+
+.ranking--container ul:after {
+    display: block;
+    content: "clear";
+    clear: both;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ranking--container > ul > li {
+    width: 47%;
+    float: left;
+    height: 2.5rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.ranking--container > ul > li:nth-child(2n) {
+    margin-left: 6%;
+}
+
+.ranking--container .left-img-container {
+    width: 1.5rem;
+    height: 1.5rem;
+    float: left;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0.25rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.ranking--container .left-img-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.ranking--container .right-score-container {
+    width: 82%;
+    height: 100%;
+    float: right;
+}
+
+.right-score-container .top-left {
+    float: left;
+    width: 30%;
+}
+
+.right-score-container .top-left p {
+    font-size: 0.6rem;
+}
+
+.right-score-container .top-left p:nth-child(1) {
+    color: rgba(53, 64, 82, 1);
+}
+
+.right-score-container .top-left p:nth-child(2) {
+    color: rgba(127, 143, 164, 1);
+}
+
+.right-score-container .top-right {
+    width: 70%;
+    float: right;
+}
+
+.right-score-container .top-right p {
+    font-size: 0.5rem;
+    color: rgba(127, 143, 164, 1);
+}
+
+.right-score-container .top-right p span {
+    font-size: 0.7rem;
+    padding-left: 0.5rem;
+    color: rgba(41, 152, 23, 1);
+}
+
+.right-score-container .bottom {
+    width: 100%;
+    margin-top: 0.15rem;
+    height: 0.75rem;
+}
+
+.right-score-container .bottom li {
+    width: 0.4rem;
+    height: 0.5rem;
+    float: left;
+    margin-left: 0.15rem;
+    background-color: rgba(226, 231, 238, 1);
+}
+
+.right-score-container .bottom li:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.right-score-container .bottom li:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/*图例区域*/
+.legend--container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.legend--container ul:after {
+    display: block;
+    content: "clear";
+    clear: both;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.legend--container ul li {
+    width: 18.4%;
+    float: left;
+}
+
+.legend--container ul li:not(:first-child) {
+    margin-left: 2%;
+}
+
+.legend-box {
+    width: 1rem;
+    height: 0.75rem;
+    float: left;
+    border-radius: 4px;
+    margin-top: 0.25rem;
+}
+
+.legend-title {
+    font-size: 0.6rem;
+    color: rgba(53, 64, 82, 1);
+    line-height: 0.75rem;
+    padding-left: 0.25rem;
+    float: right;
+    width: 70%;
+}
+
+.right-score--container .top-right p .iconfont {
+    font-size: 0.7rem;
+    padding-left: 0.25rem;
+}
+
+/*ipa pro*/
+@media screen and (min-width: 800px) {
+    .scoring-right--container {
+        width: 65%;
+    }
+
+    .scoring--container {
+        height: 4rem;
+    }
+
+    .scoring-img--container {
+        margin: 0.75rem auto auto auto;
+    }
+
+    .ranking--container .right-score--container {
+        width: 83%;
+    }
+
+    .right-score--container .bottom li {
+        width: 0.4rem;
+        height: 0.5rem;
+    }
+
+    .right-score--container .top-right {
+        width: 70%;
+    }
+
+    .scoring-left--container {
+        width: 35%;
+    }
+
+    .scoring-right--container ul li {
+        width: 0.6rem;
+    }
+
+    .scoring-right--container ul {
+        margin-top: 1rem;
+    }
+}
+
+/*pc端*/
+@media screen and (min-width: 1100px) {
+    .scoring-left--container {
+        width: 25%;
+    }
+
+    .scoring-right--container {
+        width: 75%;
+    }
+
+    .scoring-right--container ul {
+        width: 50%;
+    }
+
+    .scoring-right--container .score-number {
+        padding-left: 0;
+        font-size: 0.7rem;
+    }
+
+    .scoring-right--container .score-title {
+        padding-left: 0;
+    }
+
+    .ranking--container .right-score--container {
+        width: 88%;
+    }
+
+    .right-score--container .bottom li {
+        width: 0.5rem;
+    }
+
+    .legend-box {
+        margin-top: 0;
+    }
+
+    .legend-title {
+        width: 85%;
+    }
+}
+.score-legend{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top:1rem;
+}
+.score-legend>span{
+    float: left;
+    color:#7d7777;
+    font-size:0.7rem;
+    margin-right:5rem;
+    height:1rem;
+    line-height:1rem;
+}
+.score-legend>span>b{
+    float: left;
+    width: 0.8rem;
+    height: 0.5rem;
+    margin-top:0.25rem;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+}
+.score-legend>span>b.good{background: #38b923;}
+.score-legend>span>b.well{background: #ff7800;}
+.score-legend>span>b.unqualified{background: #d54642;}
+

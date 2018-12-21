@@ -1,0 +1,250 @@
+@charset "utf-8";
+.group-box{
+	padding: 2rem 3rem 0 3rem;
+    border-top: 1px solid #e6eaee;
+}
+.group-section{
+	width: 100%;
+	text-align: center;
+	color: #9b9b9b;
+}
+.group-section>span{
+	font-size: 1rem;
+}
+.group-vote{
+	height: 1.5rem;
+	margin-top: .6rem;
+    font-size: .8rem;
+    margin-left: -6.5rem;
+}
+.vote-icon{
+	display: inline-block;
+	vertical-align: middle;
+	width: 1.2rem;
+	height: 1.2rem;
+	margin: 0 .2rem;
+	border: 2px solid #979797;
+	border-radius: 50%;
+}
+.vote-icon>i{
+	display: inline-block;
+	vertical-align: middle;
+	width: .8rem;
+	height: .8rem;
+	background: #0c77f8;
+	border-radius: 50%;
+}
+.group-list-box{
+	width: 100%;
+	overflow: auto;
+}
+.group-list{
+	font-size: 0;
+	margin: 1.3rem 0 1rem 0;
+}
+.group-item{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	/*width: calc(25% - 2.3rem);*/
+	width: 9.98rem;
+	text-align: center;
+	margin: 0 .6rem;
+	padding: 1rem .5rem;
+	border: 2px solid #eef1f4;
+	border-radius: 2px;
+}
+.group-item.active{
+	border: 2px solid #0c77f8;
+}
+.group-item input[type="checkbox"]{
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	top: 0;
+	left: 0;
+}
+.group-item-icon{
+	display: inline-block;
+	vertical-align: middle;
+	width: 3.5rem;
+	height: 3.5rem;
+	line-height: 3.5rem;
+	font-size: 1rem;
+	color:#000;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.bg-0{
+	border: 1px solid #0077ff;
+}
+.bg-1{
+	border: 1px solid #38b923;
+}
+.bg-2{
+	border: 1px solid #d54642;
+}
+.bg-3{
+	border: 1px solid #ff7800;
+}
+.bg-4{
+	border: 1px solid #008B00;
+}
+.bg-5{
+	border: 1px solid #00EEEE;
+}
+.bg-6{
+	border: 1px solid #fff600;
+}
+.bg-7{
+	border: 1px solid #000000;
+}
+.bg-8{
+	border: 1px solid #0000CD;
+}
+.bg-9{
+	border: 1px solid #00688B;
+}
+.bg-10{
+	border: 1px solid #00C5CD;
+}
+.bg-11{
+	border: 1px solid #00FF7F;
+}
+.bg-12{
+	border: 1px solid #104E8B;
+}
+.bg-13{
+	border: 1px solid #2F4F4F;
+}
+.bg-14{
+	border: 1px solid #8B008B;
+}
+.bg-15{
+	border: 1px solid #8B4513;
+}
+.bg-16{
+	border: 1px solid #8B8970;
+}
+.bg-17{
+	border: 1px solid #8E388E;
+}
+.bg-18{
+	border: 1px solid #A52A2A;
+}
+.bg-19{
+	border: 1px solid #AAAAAA;
+}
+.bg-20{
+	border: 1px solid #B3EE3A;
+}
+.bg-21{
+	border: 1px solid #CD2626;
+}
+.bg-22{
+	border: 1px solid #EEB422;
+}
+.bg-23{
+	border: 1px solid #FF34B3;
+}
+.bg-24{
+	border: 1px solid #FFFF00;
+}
+.bg-25{
+	border: 1px solid #FF7F00;
+}
+.bg-26{
+	border: 1px solid #FF4500;
+}
+.bg-27{
+	border: 1px solid #F0FFFF;
+}
+.bg-28{
+	border: 1px solid #DB7093;
+}
+.bg-29{
+	border: 1px solid #9F79EE;
+}
+
+.group-item-img{
+	width: 100%;
+	margin: 10px -2px 5px 2px;
+}
+.group-item-img>img{
+	display: inline-block;
+	vertical-align: middle;
+	width: calc(25% - 4px);
+	margin: 0 2px;
+	background-size: 100%;
+	border-radius: 50%;
+}
+.group-item-descr{
+	padding: 0 1.4rem 0 .6rem;
+	font-size: .1rem;
+	color: #8a96a0;
+}
+.group-item-descr>li{
+	text-align: left;
+}
+.group-item-descr .num{
+	color: #37394c;
+}
+
+.group-item-step-content{
+	position: relative;
+	font-size: .5rem;
+	padding: 0 .6rem;
+	text-align: left;
+	text-align: justify;
+}
+.group-item-step-content:before{
+	position: absolute;
+    top: .2rem;
+    left: -.15rem;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: .25rem;
+    height: .25rem;
+    background: #fff;
+    border: .2rem solid #0077FF;
+    border-radius: 50%;
+    z-index: 3;
+}
+.group-item-step-content:after{
+	position: absolute;
+    top: 0.65rem;
+    left: .1rem;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: .1rem;
+    height: 100%;
+    background: #ebebed;
+}
+.group-item-step-content>h2{
+	color:#000;
+	margin: .4rem 0 .2rem 0;
+}
+.group-item-step-text{
+	color: #8a96a0;
+}
+.btn-box{
+	margin-top: 1rem;
+	text-align: center;
+}
+/*groupReportLike.html*/
+.group-item-like{
+	width: 100%;
+	text-align: center;
+	margin: .8rem 0 1rem 0;
+}
+.group-item-like>h2{
+	font-size: 1rem;
+	color: #475364;
+}
+.group-item-like .group-like-num{
+	font-size: .8rem;
+	color: #9b9b9b;
+}

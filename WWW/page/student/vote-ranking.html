@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>分享偶像</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/landscape.css">
+    <link rel="stylesheet" href="../../css/home-page.css">
+    <link rel="stylesheet" href="../../css/sharingIdol.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+</head>
+<body>
+<div class="layout-left close"></div>
+<div class="common-content">
+<p class="scores-ranking">分享偶像</p>
+<p class="sharing-topic" style="border-top: 1px solid #e6eaee;">分享主题：我心目中的职场达人</p>
+<p class="voting-results">投票结果</p>
+<div class="results--container">
+    <ul id="rankList">
+        <!--<li>
+            <div class="header-img&#45;&#45;container">
+                <img src="../../images/user.png" alt="">
+            </div>
+            <div class="list&#45;&#45;container">
+                <div class="list-img&#45;&#45;container">
+                    <img src="http://jwell-xh.oss-cn-shenzhen.aliyuncs.com/20180520145814_bb5a363bd04c4fb0a7477ce5e54da349_.png?x-oss-process=image/resize,h_224,w_280"
+                         alt="">
+                </div>
+                <p class="list-name">sea</p>
+                <p class="list-number">获得56个赞</p>
+                <div class="user-list&#45;&#45;container">
+                    <ul>
+                        <li>
+                            <img src="../../images/user.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../images/user.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../images/user.png" alt="">
+                        </li>
+                        <li>
+                            <img src="../../images/user.png" alt="">
+                        </li>
+                        <li>
+                            <p>+4</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>-->
+    </ul>
+</div>
+</div>
+<div class="layout-nav-right" style="overflow-y: scroll;"></div>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/landscape.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/student.js" ></script>
+<script>
+    setTimeout(function(){
+        $(".layout-nav-right a").eq(2).parent().addClass("active");
+    },200);
+    getRankList();
+    function getRankList(){
+        $.ajax({
+            type: 'GET',
+            url: server + '/stu/idol/getOrder?token=' + token,
+            dataType: "json",
+            success: function (back) {
+                console.log(back);
+                var result=back.obj.idollist;
+                if(result.length>0){
+                    for(var i=0;i<result.length;i++){
+                        var contentStr='';
+                        contentStr += '<li>';
+                        contentStr += '<div class="header-img--container">';
+                        contentStr += '<img src="'+result[i].user_head_image+'" alt="">';
+                        contentStr += '</div>';
+                        contentStr += '<div class="list--container">';
+                        contentStr += '<div class="list-img--container">';
+                        contentStr += '<img src="'+result[i].upload_net_url+'" alt="">';
+                        contentStr += '</div>';
+                        contentStr += '<p class="list-name">'+result[i].user_name+'</p>';
+                        contentStr += '<p class="list-number">获得'+result[i].likes_user_num+'个赞</p>';
+                        if(result[i].likes_user_num>=1){
+                            contentStr += '<div class="user-list--container">';
+                            contentStr += '<ul class="photoList">';
+                            var imgs=result[i].likes_user_loginname;
+                            var srcs=imgs.split("|");
+                           for(var j=0;j<srcs.length-1;j++){
+                                if(j<4){
+                                    contentStr += '<li>';
+                                    contentStr += '<img src="'+srcs[j]+'" alt="">';
+                                    contentStr += '</li>';
+                                }
+                           }
+                            if(srcs.length>4){
+                                contentStr += '<li>';
+                                contentStr += '<p>'+(srcs.length-5)+'</p>';
+                                contentStr += '</li>';
+                            }
+                            contentStr += '</ul>';
+                            contentStr += '</div>';
+                            contentStr += '</div>';
+                            contentStr += '</li>';
+                        }
+                        $("#rankList").append(contentStr);
+                    }
+                }
+
+            }
+        })
+    }
+</script>
+</body>
+</html>
